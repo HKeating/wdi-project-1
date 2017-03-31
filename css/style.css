@@ -1,3 +1,15 @@
 h1 {
   background-color: #933;
 }
+
+.gameBoard {
+  border: 5px solid black;
+  width: 800px;
+  height: 500px;
+}
+
+.sausage {
+  background-color: blue;
+  height: 50px;
+  width: 200px;
+}

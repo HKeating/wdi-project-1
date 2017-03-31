@@ -1,0 +1,7 @@
+Gridlock game
+
+6 x 6 grid - 6 rows 6 columns, cars/vans of 2/3 blocks, can slide either vertically or horizontally
+Objective to get one car to escape the grid
+Use mousedown/mouseup to listen for clicks on the vehicles. Track change in mouse X,Y coords to measure movement of vehicle.
+
+First objective would be to set up a game board and create a div that can be dragged along the x or y axis but would only settle on grid squares.
