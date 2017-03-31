@@ -14,7 +14,14 @@ $(() =>{
   // let $sausageTop = $sausage.position().top;
 
 
-  $sausage.animate({ top: '535px' }, 1000);
+
+  $($sausage).on('click', function() {
+    $sausage.animate({ top: '300px'}, 100);
+    if ($sausage.position().top < 535) {
+      $sausage.animate({ top: '535px' }, 1000);
+    }
+  });
+
 
 
 

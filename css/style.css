@@ -13,6 +13,7 @@ h1 {
   height: 50px;
   width: 200px;
   position: absolute;
+  border-radius: 20px;
   top: 250px;
   left: 80px;
 }
