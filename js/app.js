@@ -17,14 +17,16 @@ $(() =>{
   // $($board).append($obstacle);
 
   // console.log($($board).css('height'));
-
-  $(document).on('keydown', function() {
-    $sausage.clearQueue();
-    $sausage.stop();
-    $sausage.animate({ top: '-=80px'}, 200);
-    atTop();
-    atBottom();
+  $($start).on('click', function() {
+    $(document).on('keydown', function() {
+      $sausage.clearQueue();
+      $sausage.stop();
+      $sausage.animate({ top: '-=80px'}, 200);
+      atTop();
+      atBottom();
+    });
   });
+
 
   const atBottom = function() {
     if ($sausage.position().top < 490) {
