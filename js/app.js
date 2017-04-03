@@ -30,7 +30,7 @@ $(() =>{
   }
 
   function atBottom() {
-    if ($sausage.position().top < 490) {
+    if ($sausage.position().top < 1000) {
       $sausage.animate({ top: '490px' }, 1000);
     }
   }
@@ -47,6 +47,9 @@ $(() =>{
     $($obstacle).addClass('obstacle');
     $($board).append($obstacle);
     $obstacle.animate({left: ($($board).css('left')) }, 5000, 'linear');
+    setTimeout(function() {
+      $obstacle.remove();
+    }, 5000);
   }
 
 });
