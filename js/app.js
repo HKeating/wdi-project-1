@@ -5,12 +5,18 @@ $(() =>{
 
   const $board = $('.gameBoard');
   const $sausage = $(document.createElement('div'));
-  const $obstacle = $(document.createELement('div'));
+  const $start = $('#start');
+  // const $obstacle = $(document.createELement('div'));
 
   $($sausage).addClass('sausage');
-  $($obstacle).addClass('obstacle');
+  $($sausage).text('Sausage');
+  $($sausage).css('left', ($($board).css('left')+10));
+  $($sausage).css('top', (490));
+  // $($obstacle).addClass('obstacle');
   $($board).append($sausage);
-  $($board).append($obstacle);
+  // $($board).append($obstacle);
+
+  // console.log($($board).css('height'));
 
   $(document).on('keydown', function() {
     $sausage.clearQueue();
@@ -21,28 +27,16 @@ $(() =>{
   });
 
   const atBottom = function() {
-    if ($sausage.position().top < 555) {
-      $sausage.animate({ top: '555px' }, 1000);
+    if ($sausage.position().top < 490) {
+      $sausage.animate({ top: '490px' }, 1000);
     }
   };
 
   const atTop = function() {
-    if( $sausage.position().top < 140) {
+    if( $sausage.position().top < 70) {
       $sausage.clearQueue();
       $sausage.stop();
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
 
 });

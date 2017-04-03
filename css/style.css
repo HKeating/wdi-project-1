@@ -1,11 +1,17 @@
 h1 {
   background-color: #933;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 20px;
 }
 
 .gameBoard {
   border: 5px solid black;
   width: 800px;
   height: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
 }
 
 .sausage {
@@ -14,6 +20,17 @@ h1 {
   width: 100px;
   position: absolute;
   border-radius: 20px;
-  top: 555px;
-  left: 80px;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  /*top: 555px;*/
+}
+
+.obstacle {
+  background-color: #494;
+  position: absolute;
+  top: 500px;
+  left: 800px;
+  height: 100px;
+  width: 20px;
 }
