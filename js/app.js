@@ -4,21 +4,27 @@ console.log('Hi there');
 $(() =>{
 
   const $board = $('.gameBoard');
-  const $sausage = $(document.createElement('div'));
+  let $sausage;
   const $start = $('#start');
+  const $reset = $('#reset');
   const $currentScore = $('.currentScore');
+  const $highScore = $('.highScore');
   let obstacles;
   let scoreAndColl;
   let score = 0;
 
-  $($sausage).addClass('sausage');
-  $($sausage).text('Sausage');
-  $($sausage).css('left', ($($board).css('left')+10));
-  $($sausage).css('top', 250);
-  $($board).append($sausage);
+  function createSausage() {
+    $sausage = $(document.createElement('div'));
+    $($sausage).addClass('sausage');
+    $($sausage).text('Sausage');
+    $($sausage).css('left', ($($board).css('left')+10));
+    $($sausage).css('top', 250);
+    $($board).append($sausage);
+  }
 
   // Start button. On click set up jump event listener and begin interval generating obstacles
   $($start).on('click', function() {
+    createSausage();
     $(document).keydown(jump);
     createObstacles();
     obstacles = setInterval(() => {
@@ -78,7 +84,7 @@ $(() =>{
       $obstacleBottom.remove();
     }, 6000);
   }
-//find top right bottom and left positions of the sausage
+  //find top right bottom and left positions of the sausage
   function findS() {
     const $sTop = $($sausage).offset().top;
     const $sLeft = $($sausage).offset().left;
@@ -107,7 +113,7 @@ $(() =>{
     const $ob2Pos = [$ob2Top, $ob2Left, $ob2Bot, $ob2Right];
     return $ob2Pos;
   }
-//collision check, need to find position of sausage and position of obstacles
+  //collision check, need to find position of sausage and position of obstacles
   function collisionCheck() {
     //check for top of sausage and bottom of top obstacle
     if (findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) {
@@ -118,13 +124,26 @@ $(() =>{
       // alert('game over');
     }
   }
-//function to stop intervals and alert user they lost
+  //function to stop intervals and alert user they lost
   function gameOver() {
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
-
     alert('you lose');
-
+    restart();
+  }
+  //restart function to clear screen, record high score, and get ready to start game again
+  function restart() {
+    $board.empty();
+    if (score > $($highScore).text()) {
+      $($highScore).text(score);
+    }
+    score = 0;
+  }
+  // event listener for reset button
+  $($reset).on('click', reset);
+  function reset() {
+    $($highScore).text('0');
+    $($currentScore).text('0');
   }
 
 });
