@@ -7,6 +7,8 @@ $(() =>{
   const $sausage = $(document.createElement('div'));
   const $start = $('#start');
   const $currentScore = $('.currentScore');
+  let obstacles;
+  let scoreAndColl;
   let score = 0;
 
   $($sausage).addClass('sausage');
@@ -19,10 +21,10 @@ $(() =>{
   $($start).on('click', function() {
     $(document).keydown(jump);
     createObstacles();
-    setInterval(() => {
+    obstacles = setInterval(() => {
       createObstacles();
     }, 2000);
-    setInterval(() => {
+    scoreAndColl = setInterval(() => {
       updateScore();
       collisionCheck();
     }, 100);
@@ -43,7 +45,7 @@ $(() =>{
   }
   //stops animations if jump is attempted when sausage less than 70px from top
   function atTop() {
-    if( $sausage.position().top < 70) {
+    if($sausage.position().top < 70) {
       $sausage.clearQueue();
       $sausage.stop();
     }
@@ -107,17 +109,22 @@ $(() =>{
   }
 //collision check, need to find position of sausage and position of obstacles
   function collisionCheck() {
-    // console.log(findOb2());
-    // if ((findS()[0] < findOb1()[2] && findS()[3] < findOb1()[1]) || (findS()[2] > findOb2()[0] && findS()[3] < findOb2()[1])) {
-    //   alert('game over');
-    // }
-
     //check for top of sausage and bottom of top obstacle
     if (findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) {
-      alert('game over');
+      gameOver();
+      // alert('you lose');
     } else if (findS()[2] > findOb2()[0] && findOb2()[1] < findS()[3]) {
-      alert('game over');
+      gameOver();
+      // alert('game over');
     }
+  }
+//function to stop intervals and alert user they lost
+  function gameOver() {
+    clearInterval(obstacles);
+    clearInterval(scoreAndColl);
+
+    alert('you lose');
+
   }
 
 });
