@@ -5,26 +5,35 @@ $(() =>{
 
   const $board = $('.gameBoard');
   const $sausage = $(document.createElement('div'));
+  const $obstacle = $(document.createELement('div'));
 
   $($sausage).addClass('sausage');
+  $($obstacle).addClass('obstacle');
   $($board).append($sausage);
-
-
-  console.log($sausage.offset());
-  // let $sausageTop = $sausage.position().top;
+  $($board).append($obstacle);
 
   $(document).on('keydown', function() {
     $sausage.clearQueue();
     $sausage.stop();
-    $sausage.animate({ top: '-=100px'}, 200);
+    $sausage.animate({ top: '-=80px'}, 200);
+    atTop();
     atBottom();
   });
 
   const atBottom = function() {
-    if ($sausage.position().top < 535) {
-      $sausage.animate({ top: '535px' }, 1000);
+    if ($sausage.position().top < 555) {
+      $sausage.animate({ top: '555px' }, 1000);
     }
   };
+
+  const atTop = function() {
+    if( $sausage.position().top < 140) {
+      $sausage.clearQueue();
+      $sausage.stop();
+    }
+  };
+
+
 
 
 

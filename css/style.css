@@ -10,10 +10,10 @@ h1 {
 
 .sausage {
   background-color: blue;
-  height: 50px;
-  width: 200px;
+  height: 30px;
+  width: 100px;
   position: absolute;
   border-radius: 20px;
-  top: 535px;
+  top: 555px;
   left: 80px;
 }
