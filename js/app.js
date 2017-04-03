@@ -16,43 +16,53 @@ $(() =>{
   $($sausage).css('top', 250);
   $($board).append($sausage);
 
-// Start button. On click set up jump event listener and begin interval generating obstacles
+  // Start button. On click set up jump event listener and begin interval generating obstacles
   $($start).on('click', function() {
     $(document).keydown(jump);
+    createObstacles();
     setInterval(() => {
       createObstacles();
     }, 2000);
     setInterval(() => {
       updateScore();
+      collisionCheck();
     }, 100);
   });
-//clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
+  //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
   function jump() {
+    // const $sTop = $($sausage).offset().top;
+    // const $sLeft = $($sausage).offset().left;
+    // const $sBot = $sTop + $($sausage).outerHeight(true);
+    // const $sRight = $sLeft + $($sausage).outerWidth(true);
     $sausage.clearQueue();
     $sausage.stop();
     $sausage.animate({ top: '-=50px'}, 200);
     atTop();
     atBottom();
+    // console.log($sTop);
+    // console.log($sLeft);
+    // console.log($sBot);
+    // console.log($sRight);
   }
-//at all times sausage will animate towards bottom of screen
+  //at all times sausage will animate towards bottom of screen
   function atBottom() {
     if ($sausage.position().top < 1000) {
       $sausage.animate({ top: '495px' }, 1000);
     }
   }
-//stops animations if jump is attempted when sausage less than 70px from top
+  //stops animations if jump is attempted when sausage less than 70px from top
   function atTop() {
     if( $sausage.position().top < 70) {
       $sausage.clearQueue();
       $sausage.stop();
     }
   }
-//update scoredboard
+  //update scoreboard
   function updateScore() {
-    score = score +1;
+    score = score ++;
     $($currentScore).text(score);
   }
-//create obstacles, one top one bottom, give them classes, append to gameboard.
+  //create obstacles, one top one bottom, give them classes, append to gameboard.
   function createObstacles() {
     const $obstacleTop = $(document.createElement('div'));
     const $obstacleBottom = $(document.createElement('div'));
@@ -75,7 +85,18 @@ $(() =>{
       $obstacleBottom.remove();
     }, 6000);
   }
-
-
-
+//find top right bottom and left positions of the sausage
+  function findSausage() {
+    const $sTop = $($sausage).offset().top;
+    const $sLeft = $($sausage).offset().left;
+    const $sBot = $sTop + $($sausage).outerHeight(true);
+    const $sRight = $sLeft + $($sausage).outerWidth(true);
+    const $sPos = [$sTop, $sLeft, $sBot, $sRight];
+    return $sPos;
+  }
+//collision check, need to find position of sausage and position of obstacles
+  function collisionCheck() {
+    findSausage();
+    findObstacles();
+  }
 });
