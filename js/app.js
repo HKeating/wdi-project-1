@@ -13,8 +13,10 @@ $(() =>{
   console.log($sausage.offset());
   // let $sausageTop = $sausage.position().top;
 
-  $($sausage).on('click', function() {
-    $sausage.animate({ top: '150px'}, 200);
+  $(document).on('keydown', function() {
+    $sausage.clearQueue();
+    $sausage.stop();
+    $sausage.animate({ top: '-=100px'}, 200);
     atBottom();
   });
 
