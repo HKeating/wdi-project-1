@@ -16,21 +16,29 @@ h1 {
 
 .sausage {
   background-color: blue;
-  height: 30px;
-  width: 100px;
+  height: 25px;
+  width: 70px;
   position: absolute;
   border-radius: 20px;
   color: white;
   text-align: center;
-  line-height: 30px;
+  line-height: 25px;
   /*top: 555px;*/
 }
 
-.obstacle {
+.obstacleBottom {
   background-color: #494;
   position: absolute;
   top: 420px;
   left: 800px;
-  height: 100px;
+  /*height: 100px;*/
+  width: 20px;
+}
+.obstacleTop {
+  background-color: #494;
+  position: absolute;
+  top: 0px;
+  left: 800px;
+  /*height: 100px;*/
   width: 20px;
 }
