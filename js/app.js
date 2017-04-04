@@ -97,7 +97,7 @@ $(() =>{
     //animate obstacle from right to left, then remove after time duration
     animateLeft($obstacleTop);
     animateLeft($obstacleBottom);
-    if (randomNum % 3 == 0) {
+    if (randomNum % 2 == 0) {
       const $newBonus = createBonus();
       $($newBonus).css('top', (350 - randomNum));
       animateLeft($newBonus);
@@ -142,6 +142,7 @@ $(() =>{
     const $sPos = edges($($sausage));
     if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3])) {
       score = score + 10;
+      ($($board).find('.bonus'))[0].remove();
     }
   }
   //function to stop intervals and alert user they lost
