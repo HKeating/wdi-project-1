@@ -58,14 +58,14 @@ $(() =>{
   function jump() {
     $sausage.clearQueue();
     $sausage.stop();
-    $sausage.animate({ top: '-=50px'}, 200);
+    $sausage.animate({ top: '-=55px'}, 200, 'easeOutQuad');
     atTop();
     atBottom();
   }
   //at all times sausage will animate towards bottom of screen
   function atBottom() {
     if ($sausage.position().top < 1000) {
-      $sausage.animate({ top: '495px' }, (1200 - edges($($sausage))[0]));
+      $sausage.animate({ top: '495px' }, (2100 - edges($($sausage))[0]), 'easeOutBounce');
     }
   }
   //stops animations if jump is attempted when sausage less than 70px from top
