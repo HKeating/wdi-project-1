@@ -82,7 +82,7 @@ $(() =>{
   function createSausage() {
     $sausage = newDiv();
     $($sausage).addClass('sausage');
-    $($sausage).text('Sausage');
+    $($sausage).html('<img src="images/sausage-fall.png">');
     $($sausage).css('left', ($($board).css('left')+10));
     $($sausage).css('top', 250);
     $($board).append($sausage);

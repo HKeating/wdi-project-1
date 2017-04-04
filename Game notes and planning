@@ -47,3 +47,8 @@ Functionality
               => game over screen, list score, tell you if you got a highscore (ask for name if so), options return to main menu or view high scores
                 => view high scores
                 => return to main menu
+
+
+  Extra stuff to sort:
+    increase background speed as game speeds up
+    Fix collision detection with sausage images.

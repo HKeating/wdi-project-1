@@ -36,14 +36,14 @@ h1 {
 }
 
 .sausage {
-  background-color: blue;
-  height: 25px;
-  width: 70px;
+  /*background-color: blue;*/
+  height: auto;
+  width: auto;
   position: absolute;
-  border-radius: 20px;
-  color: white;
-  text-align: center;
-  line-height: 25px;
+  /*border-radius: 20px;*/
+  /*color: white;*/
+  /*text-align: center;*/
+  /*line-height: 25px;*/
   margin-left: 20px;
   /*top: 555px;*/
 }
