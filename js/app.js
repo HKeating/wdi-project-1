@@ -89,10 +89,10 @@ $(() =>{
     $($obstacleBottom).addClass('obstacleBottom');
     $($board).append($obstacleBottom);
     //create random number to set obstacle position, set obstacle heights and top position to have gap of 150px to fly through at all times.
-    const randomNum = Math.floor(Math.random()*150);
-    $($obstacleTop).css('height', 250 - randomNum);
-    $($obstacleBottom).css('height', 100 + randomNum);
-    $($obstacleBottom).css('top', (520 - (100+randomNum)));
+    const randomNum = Math.floor(Math.random()*200);
+    $($obstacleTop).css('height', 275 - randomNum);
+    $($obstacleBottom).css('height', 75 + randomNum);
+    $($obstacleBottom).css('top', (520 - (75+randomNum)));
     //animate obstacle from right to left, then remove after time duration
     animateLeft($obstacleTop);
     animateLeft($obstacleBottom);

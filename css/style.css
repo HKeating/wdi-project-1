@@ -52,7 +52,7 @@ h1 {
   top: 420px;
   left: 800px;
   /*height: 100px;*/
-  width: 20px;
+  width: 50px;
 }
 .obstacleTop {
   background-color: #494;
@@ -60,5 +60,5 @@ h1 {
   top: 0;
   left: 800px;
   /*height: 100px;*/
-  width: 20px;
+  width: 50px;
 }
