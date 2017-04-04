@@ -5,3 +5,15 @@ MVP - an object that moves up and down on the y-axis on click (spacebar?). Colli
 Y-axis falling should act like gravity - increasing speed the longer it falls.
 Start to rise on mouse click/mousedown?
 Use setInterval every ms/every 10ms to refresh y-axis position.
+
+
+
+Tuesday Plan
+
+Refactor - go over game code, break up into more functions. Remove hard-coding in obstacle/sausage positioning - look at CSS too, scaleable?
+
+Introduce dynamic difficulty? Game speeds up the longer you play.
+Add menu - whole game playable with keyboard. Bind certain keys.
+Introduce difficulty modifier?
+
+Other possibilities - popups for bonus points, popups for short-term score multipliers.

@@ -4,16 +4,16 @@ console.log('Hi there');
 $(() =>{
 
   const $board = $('.gameBoard');
-  let $sausage;
   const $start = $('#start');
   const $reset = $('#reset');
   const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
+  let $sausage;
   let obstacles;
   let scoreAndColl;
   let score = 0;
 
-
+  //create sausage element, position it
   function createSausage() {
     $sausage = $(document.createElement('div'));
     $($sausage).addClass('sausage');
@@ -22,8 +22,7 @@ $(() =>{
     $($sausage).css('top', 250);
     $($board).append($sausage);
   }
-
-  // Start button. On click set up jump event listener and begin interval generating obstacles
+  // Start button. On click create jumping element, set up jump event listener and begin intervals generating obstacles, and updating score and checking for collision. Also initialise atBottom().
   $($start).on('click', function() {
     createSausage();
     $(document).keydown(jump);
@@ -48,7 +47,7 @@ $(() =>{
   //at all times sausage will animate towards bottom of screen
   function atBottom() {
     if ($sausage.position().top < 1000) {
-      $sausage.animate({ top: '495px' }, 1000);
+      $sausage.animate({ top: '495px' }, (1200 - edges($($sausage))[0]));
     }
   }
   //stops animations if jump is attempted when sausage less than 70px from top
@@ -58,7 +57,7 @@ $(() =>{
       $sausage.stop();
     }
   }
-  //update scoreboard
+  //update scoreboard with current score
   function scoreUp() {
     score = score +1;
     $($currentScore).text(score);
@@ -77,60 +76,34 @@ $(() =>{
     $($obstacleBottom).css('height', 100 + randomNum);
     $($obstacleBottom).css('top', (520 - (100+randomNum)));
     //animate obstacle from right to left, then remove after time duration
-    $obstacleTop.animate({left: ($($board).css('left')) }, 4000, 'linear');
+    animateLeft($obstacleTop);
+    animateLeft($obstacleBottom);
+  }
+  //animate an element until its left position is equal to that of the board, then remove it
+  function animateLeft(a) {
+    a.animate({left: ($($board).css('left')) }, 4000, 'linear');
     setTimeout(function() {
-      $obstacleTop.remove();
-    }, 4000);
-    $obstacleBottom.animate({left: ($($board).css('left')) }, 4000, 'linear');
-    setTimeout(function() {
-      $obstacleBottom.remove();
+      a.remove();
     }, 4000);
   }
 
-  //find top right bottom and left positions of the sausage
-
-  function findSomething(a) {
-    const $sTop = $(a).offset().top;
-    const $sLeft = $(a).offset().left;
-    const $sBot = $sTop + $(a).outerHeight(true);
-    const $sRight = $sLeft + $(a).outerWidth(true);
-    const $sPos = [$sTop, $sLeft, $sBot, $sRight];
-    return $sPos;
+  //find top right bottom and left positions of an element
+  function edges(a) {
+    const $top = $(a).offset().top;
+    const $left = $(a).offset().left;
+    const $bot = $top + $(a).outerHeight(true);
+    const $right = $left + $(a).outerWidth(true);
+    const $pos = [$top, $left, $bot, $right];
+    return $pos;
   }
-  console.log(findSomething($board));
-
-  function findS() {
-    const $sTop = $($sausage).offset().top;
-    const $sLeft = $($sausage).offset().left;
-    const $sBot = $sTop + $($sausage).outerHeight(true);
-    const $sRight = $sLeft + $($sausage).outerWidth(true);
-    const $sPos = [$sTop, $sLeft, $sBot, $sRight];
-    return $sPos;
-  }
-  function findOb1() {
-    const $ob1 = $($board).find('.obstacleTop');
-    //recording position of top obstacle
-    const $ob1Top = $($ob1).offset().top;
-    const $ob1Left = $($ob1).offset().left;
-    const $ob1Bot = $ob1Top + $($ob1).outerHeight(true);
-    const $ob1Right = $ob1Left + $($ob1).outerWidth(true);
-    const $ob1Pos = [$ob1Top, $ob1Left, $ob1Bot, $ob1Right];
-    return $ob1Pos;
-  }
-  function findOb2() {
-    const $ob2 = $($board).find('.obstacleBottom');
-    //recording position of bottom obstacle
-    const $ob2Top = $($ob2).offset().top;
-    const $ob2Left = $($ob2).offset().left;
-    const $ob2Bot = $ob2Top + $($ob2).outerHeight(true);
-    const $ob2Right = $ob2Left + $($ob2).outerWidth(true);
-    const $ob2Pos = [$ob2Top, $ob2Left, $ob2Bot, $ob2Right];
-    return $ob2Pos;
-  }
-  //collision check, need to find position of sausage and position of obstacles
+  console.log(edges($board));
+  //collision check, runs edges() on sausage and both obstacles, then checks for overlap. runs gameOver() if there is
   function collisionCheck() {
+    const $ob1 = edges($($board).find('.obstacleTop'));
+    const $ob2 = edges($($board).find('.obstacleBottom'));
+    const $sPos = edges($($sausage));
     //check for top of sausage and bottom of top obstacle
-    if ((findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) || (findS()[2] > findOb2()[0] && findOb2()[1] < findS()[3]) || (findS()[2] === findOb2()[2])) {
+    if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3]) || ($sPos[2] === $ob2[2])) {
       gameOver();
     }
   }
