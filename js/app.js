@@ -13,6 +13,7 @@ $(() =>{
   let scoreAndColl;
   let score = 0;
 
+
   function createSausage() {
     $sausage = $(document.createElement('div'));
     $($sausage).addClass('sausage');
@@ -85,7 +86,19 @@ $(() =>{
       $obstacleBottom.remove();
     }, 4000);
   }
+
   //find top right bottom and left positions of the sausage
+
+  function findSomething(a) {
+    const $sTop = $(a).offset().top;
+    const $sLeft = $(a).offset().left;
+    const $sBot = $sTop + $(a).outerHeight(true);
+    const $sRight = $sLeft + $(a).outerWidth(true);
+    const $sPos = [$sTop, $sLeft, $sBot, $sRight];
+    return $sPos;
+  }
+  console.log(findSomething($board));
+
   function findS() {
     const $sTop = $($sausage).offset().top;
     const $sLeft = $($sausage).offset().left;
