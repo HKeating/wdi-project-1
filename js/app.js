@@ -7,11 +7,11 @@ $(() =>{
   const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
   let $sausage;
-  // let $startPage;
-  let $endPage;
   let obstacles;
   let scoreAndColl;
+  let diffChange;
   let score = 0;
+  let difficulty = 4000;
 
   //create sausage element, position it
   function createSausage() {
@@ -44,12 +44,15 @@ $(() =>{
     createObstacles();
     obstacles = setInterval(() => {
       createObstacles();
-    }, 2000);
+    }, difficulty / 2);
     scoreAndColl = setInterval(() => {
       scoreUp();
       collisionCheck();
     }, 100);
     atBottom();
+    diffChange = setInterval(() => {
+      difficulty = difficulty * 0.9;
+    }, 5000);
   }
   //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
   function jump() {
@@ -96,10 +99,10 @@ $(() =>{
   }
   //animate an element until its left position is equal to that of the board, then remove it
   function animateLeft(a) {
-    a.animate({left: ($($board).css('left')) }, 4000, 'linear');
+    a.animate({left: ($($board).css('left')) }, difficulty, 'linear');
     setTimeout(function() {
       a.remove();
-    }, 4000);
+    }, difficulty);
   }
 
   //find top right bottom and left positions of an element
@@ -125,9 +128,11 @@ $(() =>{
   function gameOver() {
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
+    clearInterval(diffChange);
     clearBoard();
     endPage();
     updateScore();
+    difficulty = 4000;
   }
   function startPage() {
     menu().html('Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!');
