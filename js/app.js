@@ -4,11 +4,10 @@ console.log('Hi there');
 $(() =>{
 
   const $board = $('.gameBoard');
-  // const $start = $('#start');
-  const $reset = $('#reset');
   const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
   let $sausage;
+  let $endScreen;
   let obstacles;
   let scoreAndColl;
   let score = 0;
@@ -24,13 +23,6 @@ $(() =>{
   }
   //global keydown event listeners
   $(document).on('keydown', function(e) {
-    // if (e.which == 83) {
-    //   start();
-    // } else if (e.which == 82) {
-    //   reset();
-    // } else if (e.which == 32) {
-    //   jump();
-    // }
     switch(e.which) {
       case 83:
         start();
@@ -45,6 +37,7 @@ $(() =>{
   });
   //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
   function start() {
+    $board.empty();
     createSausage();
     createObstacles();
     obstacles = setInterval(() => {
@@ -131,9 +124,16 @@ $(() =>{
   function gameOver() {
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
-    alert('you lose');
-    updateScore();
     $board.empty();
+    endScreen();
+    updateScore();
+  }
+  //function to create div with text telling user they have lost, recording score, and telling them they can start again by pressing S, or reset scores by pressing R.
+  function endScreen() {
+    $endScreen = $(document.createElement('div'));
+    $($endScreen).addClass('endScreen');
+    $($board).append($endScreen);
+    $endScreen.html('Oh no, game over!<br>You scored ' + (score - 1) + ' points.<br>To play again, press "s", or to reset the high score press "r".');
   }
   //restart function to clear screen, record high score, and get ready to start game again
   function updateScore() {
@@ -143,8 +143,7 @@ $(() =>{
     }
     score = 0;
   }
-  // event listener for reset button
-  $($reset).on('click', reset);
+  //reset high score to 0
   function reset() {
     $($highScore).text('0');
   }
