@@ -69,4 +69,5 @@ h1 {
   height: 20px;
   width: 20px;
   border-radius:10px;
+  border: 1px solid black;
 }

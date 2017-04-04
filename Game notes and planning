@@ -17,3 +17,33 @@ Add menu - whole game playable with keyboard. Bind certain keys.
 Introduce difficulty modifier?
 
 Other possibilities - popups for bonus points, popups for short-term score multipliers.
+
+
+
+Tuesday Evening new plan
+
+Style
+- find background image, look in to slow-scroll. How to avoid removing it when using $board.empty()? - 'Animate' sausage. Decide whether to use sausage or not...
+- style the obstacles
+- spikes, or something along bottom of screen?
+- fonts
+- colour scheme
+- borders, page resizing?
+
+Functionality
+- animations for gameover, hitting bonus, others?
+- event listener for tapping
+- difficulty selector at start (sets a global variable to modify rate at which game speed increases and points are accrued (and value of bonuses?))
+- highscore table: array (or object? (or array of objects??)) to store top 5(+?) scores in current play session. make it harder to clear highscores (put a confirm on the -r- event)
+- sounds... music? on jump, on bonus, on death
+- improved menus (selector that can be moved with arrow keys, and/or dual functionality with click/keymapping)
+
+  - menu flow:
+        landing page (name of game. some animation? 'press any key to continue')
+          => starting menu with instructions options to start game, select difficulty, or view high scores (+ mute button?)
+            => difficulty select: three(?) options, which sets global difficulty multiplier
+            => play game
+            => view high scores, no results initially (or set of placeholders at steady intervals?)
+              => game over screen, list score, tell you if you got a highscore (ask for name if so), options return to main menu or view high scores
+                => view high scores
+                => return to main menu

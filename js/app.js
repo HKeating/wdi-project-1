@@ -23,20 +23,25 @@ $(() =>{
     $($board).append($sausage);
   }
   //global keydown event listeners
-  $(document).on('keydown', function(e) {
-    switch(e.which) {
-      case 83:
-        start();
-        break;
-      case 82:
-        reset();
-        break;
-      case 32:
-        jump();
-        break;
-    }
-  });
-  startPage();
+  homePage();
+  function begin() {
+    clearBoard();
+    $(document).on('keydown', function(e) {
+      switch(e.which) {
+        case 83:
+          start();
+          break;
+        case 82:
+          reset();
+          break;
+        case 32:
+          jump();
+          break;
+      }
+    });
+    startPage();
+  }
+
   //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
   function start() {
     clearBoard();
@@ -66,7 +71,7 @@ $(() =>{
   //at all times sausage will animate towards bottom of screen
   function atBottom() {
     if ($sausage.position().top < 1000) {
-      $sausage.animate({ top: '495px' }, (2100 - edges($($sausage))[0]), 'easeOutBounce');
+      $sausage.animate({ top: '495px' }, (1000 - edges($($sausage))[0]), 'easeInQuad');
     }
   }
   //stops animations if jump is attempted when sausage less than 70px from top
@@ -154,6 +159,10 @@ $(() =>{
     endPage();
     updateScore();
     difficulty = 4000;
+  }
+  function homePage() {
+    menu().html('<h1>A FlappyBird Sim</h1>Press any key to continue');
+    $(document).one('keydown', begin);
   }
   function startPage() {
     menu().html('Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!');
