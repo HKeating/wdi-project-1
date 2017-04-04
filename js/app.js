@@ -34,6 +34,7 @@ $(() =>{
       scoreUp();
       collisionCheck();
     }, 100);
+    atBottom();
   });
   //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
   function jump() {
@@ -116,9 +117,9 @@ $(() =>{
   //collision check, need to find position of sausage and position of obstacles
   function collisionCheck() {
     //check for top of sausage and bottom of top obstacle
-    if ((findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) || (findS()[2] > findOb2()[0] && findOb2()[1] < findS()[3])) {
+    if ((findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) || (findS()[2] > findOb2()[0] && findOb2()[1] < findS()[3]) || (findS()[2] === findOb2()[2])) {
       gameOver();
-    } 
+    }
   }
   //function to stop intervals and alert user they lost
   function gameOver() {
