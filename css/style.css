@@ -37,7 +37,7 @@ h1 {
 .obstacleTop {
   background-color: #494;
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 800px;
   /*height: 100px;*/
   width: 20px;

@@ -23,7 +23,9 @@ $(() =>{
     $($board).append($sausage);
   }
   // Start button. On click create jumping element, set up jump event listener and begin intervals generating obstacles, and updating score and checking for collision. Also initialise atBottom().
-  $($start).on('click', function() {
+  $($start).on('click', start);
+
+  function start() {
     createSausage();
     $(document).keydown(jump);
     createObstacles();
@@ -35,7 +37,7 @@ $(() =>{
       collisionCheck();
     }, 100);
     atBottom();
-  });
+  }
   //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
   function jump() {
     $sausage.clearQueue();
