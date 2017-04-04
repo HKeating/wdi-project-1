@@ -116,13 +116,9 @@ $(() =>{
   //collision check, need to find position of sausage and position of obstacles
   function collisionCheck() {
     //check for top of sausage and bottom of top obstacle
-    if (findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) {
+    if ((findS()[0] < findOb1()[2] && findOb1()[1] < findS()[3]) || (findS()[2] > findOb2()[0] && findOb2()[1] < findS()[3])) {
       gameOver();
-      // alert('you lose');
-    } else if (findS()[2] > findOb2()[0] && findOb2()[1] < findS()[3]) {
-      gameOver();
-      // alert('game over');
-    }
+    } 
   }
   //function to stop intervals and alert user they lost
   function gameOver() {
