@@ -31,7 +31,7 @@ $(() =>{
       createObstacles();
     }, 2000);
     scoreAndColl = setInterval(() => {
-      updateScore();
+      scoreUp();
       collisionCheck();
     }, 100);
   });
@@ -57,7 +57,7 @@ $(() =>{
     }
   }
   //update scoreboard
-  function updateScore() {
+  function scoreUp() {
     score = score +1;
     $($currentScore).text(score);
   }
@@ -129,11 +129,11 @@ $(() =>{
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
     alert('you lose');
-    restart();
+    updateScore();
+    $board.empty();
   }
   //restart function to clear screen, record high score, and get ready to start game again
-  function restart() {
-    $board.empty();
+  function updateScore() {
     if (score > $($highScore).text()) {
       $($highScore).text(score - 1);
       $($currentScore).text('0');
