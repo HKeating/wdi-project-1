@@ -15,7 +15,7 @@ $(() =>{
 
   //create sausage element, position it
   function createSausage() {
-    $sausage = $(document.createElement('div'));
+    $sausage = newDiv();
     $($sausage).addClass('sausage');
     $($sausage).text('Sausage');
     $($sausage).css('left', ($($board).css('left')+10));
@@ -82,8 +82,8 @@ $(() =>{
   }
   //create obstacles, one top one bottom, give them classes, append to gameboard.
   function createObstacles() {
-    const $obstacleTop = $(document.createElement('div'));
-    const $obstacleBottom = $(document.createElement('div'));
+    const $obstacleTop = newDiv();
+    const $obstacleBottom = newDiv();
     $($obstacleTop).addClass('obstacleTop');
     $($board).append($obstacleTop);
     $($obstacleBottom).addClass('obstacleBottom');
@@ -143,10 +143,14 @@ $(() =>{
   }
   //function to create and return a div within the game board that has class menu
   function menu() {
-    const $popup = $(document.createElement('div'));
+    const $popup = newDiv();
     $($popup).addClass('menu');
     $($board).append($popup);
     return $($popup);
+  }
+  function newDiv() {
+    const newDiv = $(document.createElement('div'));
+    return newDiv;
   }
   //restart function to clear screen, record high score, and get ready to start game again
   function updateScore() {
