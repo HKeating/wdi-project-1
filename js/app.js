@@ -13,15 +13,7 @@ $(() =>{
   let score = 0;
   let difficulty = 4000;
 
-  //create sausage element, position it
-  function createSausage() {
-    $sausage = newDiv();
-    $($sausage).addClass('sausage');
-    $($sausage).text('Sausage');
-    $($sausage).css('left', ($($board).css('left')+10));
-    $($sausage).css('top', 250);
-    $($board).append($sausage);
-  }
+
   //global keydown event listeners
   homePage();
   function begin() {
@@ -85,6 +77,15 @@ $(() =>{
   function scoreUp() {
     score = score +1;
     $($currentScore).text(score);
+  }
+  //create sausage element, position it
+  function createSausage() {
+    $sausage = newDiv();
+    $($sausage).addClass('sausage');
+    $($sausage).text('Sausage');
+    $($sausage).css('left', ($($board).css('left')+10));
+    $($sausage).css('top', 250);
+    $($board).append($sausage);
   }
   //create obstacles, one top one bottom, give them classes, append to gameboard.
   function createObstacles() {
