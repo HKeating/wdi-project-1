@@ -3,6 +3,7 @@ h1 {
   font-size: 30px;
   font-weight: bold;
   padding: 20px;
+  color: white;
 }
 
 .gameBoard {
@@ -21,9 +22,8 @@ h1 {
   width: 800px;
   margin: 0 auto;
 }
-
-.endScreen {
-  background-color: red;
+.popup {
+  background-color: #933;
   margin: 180px auto 0;
   text-align: center;
   color: white;
