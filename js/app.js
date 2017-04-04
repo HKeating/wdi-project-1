@@ -200,4 +200,11 @@ $(() =>{
     $board.empty();
   }
 
+  let currentPos = 0;
+  const direction = 'h';
+  function bgScroll() {
+    currentPos -= 1;
+    $($board).css('backgroundPosition', (direction == 'h') ? currentPos+'px 0' : '0 ' + currentPos+'px');
+  }
+  setInterval(bgScroll, 70);
 });

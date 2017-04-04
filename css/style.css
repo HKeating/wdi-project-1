@@ -7,6 +7,8 @@ h1 {
 }
 
 .gameBoard {
+  background: url(../images/background.jpg) repeat 0 bottom;
+  background-size: cover;
   border: 5px solid black;
   width: 800px;
   height: 500px;
