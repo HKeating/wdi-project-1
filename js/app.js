@@ -37,7 +37,7 @@ $(() =>{
   });
   //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
   function start() {
-    $board.empty();
+    clearBoard();
     createSausage();
     createObstacles();
     obstacles = setInterval(() => {
@@ -124,7 +124,7 @@ $(() =>{
   function gameOver() {
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
-    $board.empty();
+    clearBoard();
     endScreen();
     updateScore();
   }
@@ -133,7 +133,7 @@ $(() =>{
     $endScreen = $(document.createElement('div'));
     $($endScreen).addClass('endScreen');
     $($board).append($endScreen);
-    $endScreen.html('Oh no, game over!<br>You scored ' + (score - 1) + ' points.<br>To play again, press "s", or to reset the high score press "r".');
+    $endScreen.html('Oh no, game over!<br>You scored ' + (score - 1) + ' points.<br>To play again, press "s"<br>To reset the high score press "r".');
   }
   //restart function to clear screen, record high score, and get ready to start game again
   function updateScore() {
@@ -146,6 +146,10 @@ $(() =>{
   //reset high score to 0
   function reset() {
     $($highScore).text('0');
+  }
+
+  function clearBoard() {
+    $board.empty();
   }
 
 });
