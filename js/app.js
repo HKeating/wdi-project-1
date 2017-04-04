@@ -51,7 +51,7 @@ $(() =>{
   }
   //stops animations if jump is attempted when sausage less than 70px from top
   function atTop() {
-    if($sausage.position().top < 70) {
+    if($sausage.position().top < 90) {
       $sausage.clearQueue();
       $sausage.stop();
     }
@@ -75,14 +75,14 @@ $(() =>{
     $($obstacleBottom).css('height', 100 + randomNum);
     $($obstacleBottom).css('top', (520 - (100+randomNum)));
     //animate obstacle from right to left, then remove after time duration
-    $obstacleTop.animate({left: ($($board).css('left')) }, 6000, 'linear');
+    $obstacleTop.animate({left: ($($board).css('left')) }, 4000, 'linear');
     setTimeout(function() {
       $obstacleTop.remove();
-    }, 6000);
-    $obstacleBottom.animate({left: ($($board).css('left')) }, 6000, 'linear');
+    }, 4000);
+    $obstacleBottom.animate({left: ($($board).css('left')) }, 4000, 'linear');
     setTimeout(function() {
       $obstacleBottom.remove();
-    }, 6000);
+    }, 4000);
   }
   //find top right bottom and left positions of the sausage
   function findS() {
@@ -135,7 +135,8 @@ $(() =>{
   function restart() {
     $board.empty();
     if (score > $($highScore).text()) {
-      $($highScore).text(score);
+      $($highScore).text(score - 1);
+      $($currentScore).text('0');
     }
     score = 0;
   }
@@ -143,7 +144,6 @@ $(() =>{
   $($reset).on('click', reset);
   function reset() {
     $($highScore).text('0');
-    $($currentScore).text('0');
   }
 
 });
