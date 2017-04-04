@@ -4,7 +4,7 @@ console.log('Hi there');
 $(() =>{
 
   const $board = $('.gameBoard');
-  const $start = $('#start');
+  // const $start = $('#start');
   const $reset = $('#reset');
   const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
@@ -22,12 +22,30 @@ $(() =>{
     $($sausage).css('top', 250);
     $($board).append($sausage);
   }
-  // Start button. On click create jumping element, set up jump event listener and begin intervals generating obstacles, and updating score and checking for collision. Also initialise atBottom().
-  $($start).on('click', start);
-
+  //global keydown event listeners
+  $(document).on('keydown', function(e) {
+    // if (e.which == 83) {
+    //   start();
+    // } else if (e.which == 82) {
+    //   reset();
+    // } else if (e.which == 32) {
+    //   jump();
+    // }
+    switch(e.which) {
+      case 83:
+        start();
+        break;
+      case 82:
+        reset();
+        break;
+      case 32:
+        jump();
+        break;
+    }
+  });
+  //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
   function start() {
     createSausage();
-    $(document).keydown(jump);
     createObstacles();
     obstacles = setInterval(() => {
       createObstacles();
