@@ -62,3 +62,11 @@ h1 {
   /*height: 100px;*/
   width: 50px;
 }
+.bonus {
+  background-color: #ff4;
+  position: absolute;
+  left: 815px;
+  height: 20px;
+  width: 20px;
+  border-radius:10px;
+}

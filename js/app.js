@@ -48,6 +48,7 @@ $(() =>{
     scoreAndColl = setInterval(() => {
       scoreUp();
       collisionCheck();
+      bonusCheck();
     }, 100);
     atBottom();
     diffChange = setInterval(() => {
@@ -96,6 +97,17 @@ $(() =>{
     //animate obstacle from right to left, then remove after time duration
     animateLeft($obstacleTop);
     animateLeft($obstacleBottom);
+    if (randomNum % 3 == 0) {
+      const $newBonus = createBonus();
+      $($newBonus).css('top', (350 - randomNum));
+      animateLeft($newBonus);
+    }
+  }
+  function createBonus() {
+    const $bonus = newDiv();
+    $($bonus).addClass('bonus');
+    $($board).append($bonus);
+    return $bonus;
   }
   //animate an element until its left position is equal to that of the board, then remove it
   function animateLeft(a) {
@@ -122,6 +134,14 @@ $(() =>{
     //check for top of sausage and bottom of top obstacle
     if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3]) || ($sPos[2] === $ob2[2])) {
       gameOver();
+    }
+  }
+  //repeated collision check to find contact with bonus
+  function bonusCheck() {
+    const $bonus = edges($($board).find('.bonus'));
+    const $sPos = edges($($sausage));
+    if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3])) {
+      score = score + 10;
     }
   }
   //function to stop intervals and alert user they lost
