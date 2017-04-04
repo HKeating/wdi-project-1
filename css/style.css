@@ -22,7 +22,7 @@ h1 {
   width: 800px;
   margin: 0 auto;
 }
-.popup {
+.menu {
   background-color: #933;
   margin: 180px auto 0;
   text-align: center;
@@ -42,6 +42,7 @@ h1 {
   color: white;
   text-align: center;
   line-height: 25px;
+  margin-left: 20px;
   /*top: 555px;*/
 }
 

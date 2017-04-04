@@ -7,7 +7,7 @@ $(() =>{
   const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
   let $sausage;
-  let $startPage;
+  // let $startPage;
   let $endPage;
   let obstacles;
   let scoreAndColl;
@@ -130,17 +130,18 @@ $(() =>{
     updateScore();
   }
   function startPage() {
-    $startPage = $(document.createElement('div'));
-    $($startPage).addClass('popup');
-    $($board).append($startPage);
-    $startPage.html('Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!');
+    menu().html('Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!');
   }
   //function to create div with text telling user they have lost, recording score, and telling them they can start again by pressing S, or reset scores by pressing R.
   function endPage() {
-    $endPage = $(document.createElement('div'));
-    $($endPage).addClass('popup');
-    $($board).append($endPage);
-    $endPage.html('Oh no, game over!<br>You scored ' + (score - 1) + ' points.<br>To play again, press -s-<br>To reset the high score press -r-.');
+    menu().html('Oh no, game over!<br>You scored ' + (score - 1) + ' points.<br>To play again, press -s-<br>To reset the high score press -r-.');
+  }
+  //function to create and return a div within the game board that has class menu
+  function menu() {
+    const $popup = $(document.createElement('div'));
+    $($popup).addClass('menu');
+    $($board).append($popup);
+    return $($popup);
   }
   //restart function to clear screen, record high score, and get ready to start game again
   function updateScore() {
