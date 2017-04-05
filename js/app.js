@@ -23,7 +23,7 @@ $(() =>{
     $(document).on('keydown', function(e) {
       switch(e.which) {
         case 83:
-          start();
+          startGame();
           break;
         case 82:
           reset();
@@ -37,7 +37,7 @@ $(() =>{
   }
 
   //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
-  function start() {
+  function startGame() {
     clearBoard();
     createSausage();
     createObstacles();
@@ -72,7 +72,7 @@ $(() =>{
   //at all times sausage will animate towards bottom of screen
   function atBottom() {
     if ($sausage.position().top < 1000) {
-      $sausage.animate({ top: (485 - $($sausage).outerHeight(true))+'px'}, (1000 - edges($($sausage))[0]), 'easeInQuad');
+      $sausage.animate({ top: 490}, (1000 - edges($($sausage))[0]), 'easeInQuad');
     }
   }
   //stops animations if jump is attempted when sausage less than 70px from top
