@@ -1,13 +1,20 @@
 body {
   background: url(../images/wood_pattern/wood_pattern_@2X.png) repeat 0 bottom;
+  font-family: 'Press Start 2P', cursive;
 }
 
 h1 {
   background-color: #933;
-  font-size: 30px;
+  font-size: 25px;
+  line-height: 30px;
   font-weight: bold;
   padding: 20px;
   color: white;
+}
+
+p {
+  line-height: 20px;
+  margin: auto;
 }
 
 .gameBoard {
@@ -31,12 +38,11 @@ h1 {
 }
 .menu {
   background-color: #933;
-  margin: 180px auto 0;
+  margin: 170px auto 0;
   text-align: center;
   color: white;
   width: 50%;
   padding: 20px;
-  line-height: 20px;
   border-radius: 10px;
 }
 
@@ -54,7 +60,7 @@ h1 {
 }
 
 .obstacleBottom {
-  background-image: url(../images/pine-tree-small.png);
+  background-image: url(../images/tileable-trunk.jpg);
   /*background-size: cover;*/
   position: absolute;
   top: 420px;
@@ -77,9 +83,6 @@ h1 {
 .bonus {
   position: absolute;
   left: 815px;
-}
-.dummy {
-  position: absolute;
 }
 #bonusCoin {
   height: 30px;

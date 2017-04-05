@@ -44,7 +44,6 @@ $(() =>{
     clearBoard();
     createSausage();
     createObstacles();
-    bgScroll();
     obstacles = setInterval(() => {
       createObstacles();
     }, difficulty / 2);
@@ -167,12 +166,10 @@ $(() =>{
     if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4])) {
       score = score + 10;
       $bAudio[0].play();
-      // const $coin = $($board).find('.bonus');
+      $(currentBonuses[bonusCount]).stop();
       currentBonuses[bonusCount].css('z-index', -1);
-      // currentBonuses[bonusCount].stop();
       currentBonuses[bonusCount].addClass('animated fadeOutUp');
       bonusCount += 1;
-      // ($($board).find('.bonus'))[0].remove();
     }
   }
   //function to stop intervals and alert user they lost
@@ -180,22 +177,22 @@ $(() =>{
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
     clearInterval(diffChange);
-    clearInterval(scrolling);
     clearBoard();
     endPage();
     updateScore();
     difficulty = 4000;
   }
   function homePage() {
-    menu().html('<h1>A FlappyBird Sim</h1>Press any key to continue');
+    menu().html('<h1>A FlappyBird Sim</h1><p>Press any key to continue</p>');
     $(document).one('keydown', begin);
+    bgScroll();
   }
   function startPage() {
-    menu().html('Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!');
+    menu().html('<p>Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!</p>');
   }
   //function to create div with text telling user they have lost, recording score, and telling them they can start again by pressing S, or reset scores by pressing R.
   function endPage() {
-    menu().html('Oh no, game over!<br>You scored ' + (score - 1) + ' points.<br>To play again, press -s-<br>To reset the high score press -r-.');
+    menu().html('<p>Oh no, game over!<br>You scored ' + (score - 1) + ' points and collected ' + ($(currentBonuses).length) + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
   }
   //function to create and return a div within the game board that has class menu
   function menu() {
@@ -224,7 +221,6 @@ $(() =>{
   function reset() {
     $($highScore).text('0');
   }
-
   function clearBoard() {
     $board.empty();
   }
