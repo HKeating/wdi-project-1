@@ -11,7 +11,8 @@ $(() =>{
   let obstacles;
   let scoreAndColl;
   let scrolling;
-  // let bonusChecking = [];
+  const currentBonuses = [];
+  let bonusCount = 0;
   let currentPos = 0;
   let diffChange;
   let score = 0;
@@ -117,6 +118,7 @@ $(() =>{
     if (randomNum % 2 == 0) {
       const $newBonus = createBonus();
       $($newBonus).css('top', (350 - randomNum));
+      currentBonuses.push($newBonus);
       animateLeft($newBonus);
     }
   }
@@ -126,12 +128,6 @@ $(() =>{
     $($bonus).html('<img id="bonusCoin" src="images/coinspin-small.gif">');
     return $bonus;
   }
-  // function createDummyBonus(a) {
-  //   const $dummy = newDiv();
-  //   $($dummy).addClass('dummy');
-  //   $($dummy).html('<img id="bonusCoin" src="images/coinspin-small.gif">');
-  //   $($dummy).css('');
-  // }
   //animate an element until its left position is equal to that of the board, then remove it
   function animateLeft(a) {
     a.animate({left: ($($board).css('left')) }, difficulty, 'linear');
@@ -139,7 +135,6 @@ $(() =>{
       a.remove();
     }, difficulty);
   }
-
   //find top right bottom and left positions of an element
   function edges(a) {
     const $top = $(a).offset().top;
@@ -168,14 +163,15 @@ $(() =>{
     const $bonus = edges($($board).find('.bonus'));
     const $sPos = edges($($sausage));
     const $bAudio = newAudio();
-    console.log($bonus[4]);
     $($bAudio).attr('src', 'audio/coin.wav');
     if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4])) {
       score = score + 10;
       $bAudio[0].play();
-      const coin = $($board).find('.bonus')[0];
-      coin.css('z-index', -1);
-      coin.addClass('animated fadeOutUp');
+      // const $coin = $($board).find('.bonus');
+      currentBonuses[bonusCount].css('z-index', -1);
+      // currentBonuses[bonusCount].stop();
+      currentBonuses[bonusCount].addClass('animated fadeOutUp');
+      bonusCount += 1;
       // ($($board).find('.bonus'))[0].remove();
     }
   }
