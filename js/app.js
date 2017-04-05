@@ -10,6 +10,7 @@ $(() =>{
   let obstacles;
   let scoreAndColl;
   let scrolling;
+  let currentPos = 0;
   let diffChange;
   let score = 0;
   let difficulty = 4000;
@@ -52,6 +53,8 @@ $(() =>{
     atBottom();
     diffChange = setInterval(() => {
       difficulty = difficulty * 0.9;
+      clearInterval(scrolling);
+      bgScroll();
     }, 5000);
   }
   //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
@@ -207,12 +210,12 @@ $(() =>{
     $board.empty();
   }
   function bgScroll() {
-    let currentPos = 0;
     const direction = 'a';
+    const speed = (difficulty/25);
     function scroll() {
       currentPos -= 1;
       $($board).css('backgroundPosition', (direction == 'a') ? currentPos+'px 0' : '0 ' + currentPos+'px');
     }
-    scrolling = setInterval(scroll, 70);
+    scrolling = setInterval(scroll, speed);
   }
 });
