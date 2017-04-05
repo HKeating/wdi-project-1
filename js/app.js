@@ -7,6 +7,7 @@ $(() =>{
   const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
   let $sausage;
+  let $sAudio;
   let obstacles;
   let scoreAndColl;
   let scrolling;
@@ -63,6 +64,7 @@ $(() =>{
     $sausage.clearQueue();
     $sausage.stop();
     $sausage.animate({ top: '-=55px'}, 200, 'easeOutQuad');
+    $($sAudio).play();
     setTimeout(function() {
       $('#sausagePic').attr('src', 'images/sausage-fall.png');
     }, 200);
@@ -90,6 +92,8 @@ $(() =>{
   //create sausage element, position it
   function createSausage() {
     $sausage = newDiv();
+    $sAudio = newAudio();
+    $($sAudio).src='audio/jumps/sausagejump1.wav';
     $($sausage).addClass('sausage');
     $($sausage).css('left', ($($board).css('left')+10));
     $($sausage).css('top', 250);
@@ -189,6 +193,10 @@ $(() =>{
     const newDiv = $(document.createElement('div'));
     $($board).append(newDiv);
     return newDiv;
+  }
+  function newAudio() {
+    const newAudio = $(document.createElement('audio'));
+    return newAudio;
   }
   //restart function to clear screen, record high score, and get ready to start game again
   function updateScore() {
