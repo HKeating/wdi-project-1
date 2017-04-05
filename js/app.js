@@ -181,6 +181,8 @@ $(() =>{
     endPage();
     updateScore();
     difficulty = 4000;
+    currentBonuses.length = 0;
+    bonusCount = 0;
   }
   function homePage() {
     menu().html('<h1>A FlappyBird Sim</h1><p>Press any key to continue</p>');
@@ -192,7 +194,7 @@ $(() =>{
   }
   //function to create div with text telling user they have lost, recording score, and telling them they can start again by pressing S, or reset scores by pressing R.
   function endPage() {
-    menu().html('<p>Oh no, game over!<br>You scored ' + (score - 1) + ' points and collected ' + ($(currentBonuses).length) + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
+    menu().html('<p>Oh no, game over!<br>You scored ' + (score - 1) + ' points and collected ' + bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
   }
   //function to create and return a div within the game board that has class menu
   function menu() {
