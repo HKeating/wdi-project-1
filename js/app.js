@@ -64,7 +64,7 @@ $(() =>{
     $sausage.clearQueue();
     $sausage.stop();
     $sausage.animate({ top: '-=55px'}, 200, 'easeOutQuad');
-    $($sAudio).play();
+    $sAudio[0].play();
     setTimeout(function() {
       $('#sausagePic').attr('src', 'images/sausage-fall.png');
     }, 200);
@@ -79,7 +79,7 @@ $(() =>{
   }
   //stops animations if jump is attempted when sausage less than 70px from top
   function atTop() {
-    if($sausage.position().top < 90) {
+    if($sausage.position().top < 60) {
       $sausage.clearQueue();
       $sausage.stop();
     }
@@ -93,7 +93,7 @@ $(() =>{
   function createSausage() {
     $sausage = newDiv();
     $sAudio = newAudio();
-    $($sAudio).src='audio/jumps/sausagejump1.wav';
+    $($sAudio).attr('src', 'audio/jumps/sausagejump2.wav');
     $($sausage).addClass('sausage');
     $($sausage).css('left', ($($board).css('left')+10));
     $($sausage).css('top', 250);
@@ -156,8 +156,12 @@ $(() =>{
   function bonusCheck() {
     const $bonus = edges($($board).find('.bonus'));
     const $sPos = edges($($sausage));
+    const $bAudio = newAudio();
+    $($bAudio).attr('src', 'audio/coin.wav');
+    // console.log($bAudio);
     if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3])) {
       score = score + 10;
+      $bAudio[0].play();
       ($($board).find('.bonus'))[0].remove();
     }
   }
