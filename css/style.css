@@ -53,12 +53,16 @@ h1 {
 }
 
 .obstacleBottom {
-  background: url(../images/pine-tree-small.png) 0 top;
-  /*background-size: 100%;*/
+  background-image: url(../images/pine-tree-small.png);
+  /*background-size: cover;*/
   position: absolute;
   top: 420px;
   left: 800px;
   width: 60px;
+} 
+.obstacleBottom > img {
+  width: 60px;
+  height: 100%;
 }
 
 .obstacleTop {
