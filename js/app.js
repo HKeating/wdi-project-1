@@ -9,6 +9,7 @@ $(() =>{
   let $sausage;
   let obstacles;
   let scoreAndColl;
+  let scrolling;
   let diffChange;
   let score = 0;
   let difficulty = 4000;
@@ -39,6 +40,7 @@ $(() =>{
     clearBoard();
     createSausage();
     createObstacles();
+    bgScroll();
     obstacles = setInterval(() => {
       createObstacles();
     }, difficulty / 2);
@@ -54,16 +56,20 @@ $(() =>{
   }
   //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
   function jump() {
+    $('#sausagePic').attr('src', 'images/sausage-rise.png');
     $sausage.clearQueue();
     $sausage.stop();
     $sausage.animate({ top: '-=55px'}, 200, 'easeOutQuad');
+    setTimeout(function() {
+      $('#sausagePic').attr('src', 'images/sausage-fall.png');
+    }, 200);
     atTop();
     atBottom();
   }
   //at all times sausage will animate towards bottom of screen
   function atBottom() {
     if ($sausage.position().top < 1000) {
-      $sausage.animate({ top: '495px' }, (1000 - edges($($sausage))[0]), 'easeInQuad');
+      $sausage.animate({ top: (485 - $($sausage).outerHeight(true))+'px'}, (1000 - edges($($sausage))[0]), 'easeInQuad');
     }
   }
   //stops animations if jump is attempted when sausage less than 70px from top
@@ -82,9 +88,9 @@ $(() =>{
   function createSausage() {
     $sausage = newDiv();
     $($sausage).addClass('sausage');
-    $($sausage).html('<img src="images/sausage-fall.png">');
     $($sausage).css('left', ($($board).css('left')+10));
     $($sausage).css('top', 250);
+    $($sausage).html('<img id="sausagePic" src="images/sausage-fall.png">');
     $($board).append($sausage);
   }
   //create obstacles, one top one bottom, give them classes, append to gameboard.
@@ -138,7 +144,7 @@ $(() =>{
     const $ob2 = edges($($board).find('.obstacleBottom'));
     const $sPos = edges($($sausage));
     //check for top of sausage and bottom of top obstacle
-    if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3]) || ($sPos[2] === $ob2[2])) {
+    if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3]) || ($sPos[2] >= $ob2[2])) {
       gameOver();
     }
   }
@@ -156,6 +162,7 @@ $(() =>{
     clearInterval(obstacles);
     clearInterval(scoreAndColl);
     clearInterval(diffChange);
+    clearInterval(scrolling);
     clearBoard();
     endPage();
     updateScore();
@@ -188,7 +195,6 @@ $(() =>{
     if (score > $($highScore).text()) {
       $($highScore).text(score - 1);
       $($currentScore).text('0');
-
     }
     score = 0;
   }
@@ -200,12 +206,13 @@ $(() =>{
   function clearBoard() {
     $board.empty();
   }
-
-  let currentPos = 0;
-  const direction = 'h';
   function bgScroll() {
-    currentPos -= 1;
-    $($board).css('backgroundPosition', (direction == 'h') ? currentPos+'px 0' : '0 ' + currentPos+'px');
+    let currentPos = 0;
+    const direction = 'a';
+    function scroll() {
+      currentPos -= 1;
+      $($board).css('backgroundPosition', (direction == 'a') ? currentPos+'px 0' : '0 ' + currentPos+'px');
+    }
+    scrolling = setInterval(scroll, 70);
   }
-  setInterval(bgScroll, 70);
 });
