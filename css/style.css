@@ -59,7 +59,7 @@ h1 {
   top: 420px;
   left: 800px;
   width: 60px;
-} 
+}
 .obstacleBottom > img {
   width: 60px;
   height: 100%;
@@ -74,11 +74,13 @@ h1 {
 }
 
 .bonus {
-  background-color: #ff4;
+  /*background-image: url(../images/coin-spin.gif);*/
+  /*background-color: #ff4;*/
   position: absolute;
   left: 815px;
-  height: 20px;
+  /*border-radius:10px;*/
+}
+#bonusCoin {
+  height: 30px;
   width: 20px;
-  border-radius:10px;
-  border: 1px solid black;
 }

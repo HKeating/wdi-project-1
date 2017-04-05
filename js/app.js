@@ -118,6 +118,7 @@ $(() =>{
   function createBonus() {
     const $bonus = newDiv();
     $($bonus).addClass('bonus');
+    $($bonus).html('<img id="bonusCoin" src="images/coinspin-small.gif">');
     return $bonus;
   }
   //animate an element until its left position is equal to that of the board, then remove it
