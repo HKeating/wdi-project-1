@@ -23,7 +23,8 @@ Other possibilities - popups for bonus points, popups for short-term score multi
 Tuesday Evening new plan
 
 Style
-- find background image, look in to slow-scroll. How to avoid removing it when using $board.empty()? - 'Animate' sausage. Decide whether to use sausage or not...
+DONE- find background image, look in to slow-scroll. How to avoid removing it when using $board.empty()?
+DONE- 'Animate' sausage. Decide whether to use sausage or not...
 - style the obstacles
 - spikes, or something along bottom of screen?
 - fonts
