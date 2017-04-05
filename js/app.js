@@ -94,16 +94,13 @@ $(() =>{
     $($sausage).css('left', ($($board).css('left')+10));
     $($sausage).css('top', 250);
     $($sausage).html('<img id="sausagePic" src="images/sausage-fall.png">');
-    $($board).append($sausage);
   }
   //create obstacles, one top one bottom, give them classes, append to gameboard.
   function createObstacles() {
     const $obstacleTop = newDiv();
     const $obstacleBottom = newDiv();
     $($obstacleTop).addClass('obstacleTop');
-    $($board).append($obstacleTop);
     $($obstacleBottom).addClass('obstacleBottom');
-    $($board).append($obstacleBottom);
     //create random number to set obstacle position, set obstacle heights and top position to have gap of 150px to fly through at all times.
     const randomNum = Math.floor(Math.random()*200);
     $($obstacleTop).css('height', 275 - randomNum);
@@ -121,7 +118,6 @@ $(() =>{
   function createBonus() {
     const $bonus = newDiv();
     $($bonus).addClass('bonus');
-    $($board).append($bonus);
     return $bonus;
   }
   //animate an element until its left position is equal to that of the board, then remove it
@@ -186,11 +182,11 @@ $(() =>{
   function menu() {
     const $popup = newDiv();
     $($popup).addClass('menu');
-    $($board).append($popup);
     return $($popup);
   }
   function newDiv() {
     const newDiv = $(document.createElement('div'));
+    $($board).append(newDiv);
     return newDiv;
   }
   //restart function to clear screen, record high score, and get ready to start game again
