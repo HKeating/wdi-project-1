@@ -147,8 +147,11 @@ $(() =>{
     const $ob1 = edges($($board).find('.obstacleTop'));
     const $ob2 = edges($($board).find('.obstacleBottom'));
     const $sPos = edges($($sausage));
+    const $dAudio = newAudio();
+    $($dAudio).attr('src', 'audio/splat-gb.mp3');
     //check for top of sausage and bottom of top obstacle
     if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3]) || ($sPos[2] >= $ob2[2])) {
+      $dAudio[0].play();
       gameOver();
     }
   }
@@ -162,6 +165,7 @@ $(() =>{
     if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3])) {
       score = score + 10;
       $bAudio[0].play();
+      $($board).find('.bonus').addClass('animated fadeOutUp');
       ($($board).find('.bonus'))[0].remove();
     }
   }

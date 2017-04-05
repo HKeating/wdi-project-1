@@ -74,11 +74,8 @@ h1 {
 }
 
 .bonus {
-  /*background-image: url(../images/coin-spin.gif);*/
-  /*background-color: #ff4;*/
   position: absolute;
   left: 815px;
-  /*border-radius:10px;*/
 }
 #bonusCoin {
   height: 30px;
