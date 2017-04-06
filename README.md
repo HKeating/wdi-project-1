@@ -47,4 +47,4 @@ Flappy Sausage was built using HTML, CSS and Javascript, as well as the followin
   - [Original sausage image](https://www.spoonflower.com/giftwrap/3928149-sausage-wings-by-interrobangart)
   - [Clouds obstacle](https://toe.prx.org/2013/05/toe-03-the-clouds-part-three/)
   - [Jump sound](https://opengameart.org/content/8-bit-jump-1), [coin sound](https://freesound.org/people/timgormly/sounds/170147/), [squelch](https://www.youtube.com/watch?v=rzhjY4ETXdA)
-  - Big thanks to GA instructors Alex Chin and Rane Gowan, and TAs Nat Huitson and Ed Compton
+  - Thanks to GA instructors Alex Chin and Rane Gowan, and TAs Nat Huitson and Ed Compton
