@@ -18,14 +18,18 @@ $(() =>{
   game.highScore = 0;
   game.difficulty = 4000;
 
-  //init function
-  homePage();
+
   //init function which displays greeting, sets background scroll
-  function homePage() {
+  game.homePage = function homePage() {
     menu().html('<h1>Flappy Sausage</h1><p>Press any key to continue</p>');
     $(document).one('keydown', begin);
     bgScroll();
-  }
+  };
+
+  //init function
+  game.homePage();
+
+
   //global keydown event listeners
   function begin() {
     clearBoard();
@@ -134,9 +138,11 @@ $(() =>{
     $($bonus).html('<img id="bonusCoin" src="images/coinspin-small.gif">');
     return $bonus;
   }
+
   //animate an element until its left position is equal to that of the board, then remove it
   function animateLeft(a) {
-    a.animate({left: ($(game.$board).css('left')) }, game.difficulty, 'linear');
+    // $(game.$board).css('left')
+    a.animate({left: '-200px' }, game.difficulty, 'linear');
     setTimeout(function() {
       a.remove();
     }, game.difficulty);
@@ -159,7 +165,7 @@ $(() =>{
     const $dAudio = newAudio();
     $($dAudio).attr('src', 'audio/splat-gb.mp3');
     //check for top of sausage and bottom of top obstacle
-    if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3]) || ($sPos[2] >= $ob2[2])) {
+    if (($sPos[0] < $ob1[2] && $ob1[1] < $sPos[3] && $sPos[1] < $ob1[3]) || ($sPos[2] > $ob2[0] && $ob2[1] < $sPos[3] && $sPos[1] < $ob2[3]) || ($sPos[2] >= $ob2[2])) {
       $dAudio[0].play();
       gameOver();
     }

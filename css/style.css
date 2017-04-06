@@ -9,7 +9,7 @@ h1 {
   line-height: 30px;
   font-weight: bold;
   padding: 20px;
-  color: white;
+  color: #faebd7;
 }
 
 p {
@@ -30,12 +30,13 @@ h2 {
   padding: 10px;
   position: relative;
   z-index: -2;
+  overflow: hidden;
 }
 .menu {
   background-color: #933;
   margin: 170px auto 0;
   text-align: center;
-  color: white;
+  color: #faebd7;
   width: 50%;
   padding: 20px;
   border-radius: 10px;
@@ -43,16 +44,10 @@ h2 {
 }
 
 .sausage {
-  /*background-color: blue;*/
   height: auto;
   width: auto;
   position: absolute;
-  /*border-radius: 20px;*/
-  /*color: white;*/
-  /*text-align: center;*/
-  /*line-height: 25px;*/
   margin-left: 20px;
-  /*top: 555px;*/
 }
 
 .obstacleBottom {
@@ -60,7 +55,7 @@ h2 {
   /*background-size: cover;*/
   position: absolute;
   top: 420px;
-  left: 780px;
+  left: 850px;
   width: 60px;
   border-radius: 15px 15px 0 0;
 }
@@ -73,7 +68,7 @@ h2 {
   background: url(../images/four-clouds-small.png) repeat 0 bottom;
   position: absolute;
   top: 0;
-  left: 780px;
+  left: 850px;
   width: 60px;
 }
 
@@ -85,9 +80,10 @@ h2 {
   left: 550px;
   width: 250px;
   font-size: 12px;
-  color: white;
+  color: #faebd7;
   text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
+
 .bonusPoints {
   position: absolute;
   color: #66f;
@@ -95,8 +91,9 @@ h2 {
 
 .bonus {
   position: absolute;
-  left: 815px;
+  left: 850px;
 }
+
 #bonusCoin {
   height: 30px;
   width: 20px;
