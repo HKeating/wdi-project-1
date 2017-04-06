@@ -12,11 +12,13 @@ $(() =>{
   let scoreAndColl;
   let scrolling;
   const currentBonuses = [];
-  let highScore = 0;
   let bonusCount = 0;
   let currentPos = 0;
   let diffChange;
   let score = 0;
+  // let paddedScore;
+  let highScore = 0;
+  // let paddedHighScore;
   let difficulty = 4000;
   //init function
   homePage();
@@ -90,7 +92,7 @@ $(() =>{
   function scoreUp() {
     const $currentScore = $('.currentScore');
     score = score +1;
-    $($currentScore).text(score);
+    $($currentScore).text(pad(score));
   }
   //create sausage element, position it
   function createSausage() {
@@ -201,7 +203,7 @@ $(() =>{
   function scoreBoard() {
     scoreTracker = newDiv();
     scoreTracker.addClass('scoreBoard');
-    scoreTracker.html('<p>Current Score: <span class="currentScore">0</span></p><br><p>High Score: <span class="highScore">'+ ((highScore !== 0)?(highScore-1):0) +'</span></p>');
+    scoreTracker.html('<p>Current Score: <span class="currentScore">0000</span></p><br><p>High Score: <span class="highScore">'+ pad(((highScore !== 0)?(highScore-1):0)) +'</span></p>');
   }
   //function to create and return a div within the game board that has class menu
   function menu() {
@@ -224,6 +226,13 @@ $(() =>{
       highScore = score;
     }
     score = 0;
+  }
+  function pad(a) {
+    let padded = '' + a;
+    while (padded.length < 4) {
+      padded = '0' + padded;
+    }
+    return padded;
   }
   //reset high score to 0
   function reset() {
