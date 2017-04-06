@@ -30,10 +30,10 @@ The game lasts until the sausage hits either the ground or an obstacle. This bri
 
 Flappy Sausage was built using HTML, CSS and Javascript, as well as the following:
 
-  - jQuery (https://code.jquery.com/)
-  - Google fonts (https://fonts.google.com/)
-  - Animate.css (https://daneden.github.io/animate.css/)
-  - javascript easings (http://gsgd.co.uk/sandbox/jquery/easing/)
+  - [jQuery](https://code.jquery.com/)
+  - [Google fonts](https://fonts.google.com/)
+  - [Animate.css](https://daneden.github.io/animate.css/)
+  - [javascript easings](http://gsgd.co.uk/sandbox/jquery/easing/)
 
 ###Possible future features
 
@@ -43,8 +43,8 @@ Flappy Sausage was built using HTML, CSS and Javascript, as well as the followin
 
 ###Additional credits:
 
-  - Background image: http://www.imgbase.info/images/safe-wallpapers/miscellaneous/8_bit/42845_8_bit.jpg
-  - Original sausage image: https://www.spoonflower.com/giftwrap/3928149-sausage-wings-by-interrobangart
-  - Clouds obstacle: https://toe.prx.org/2013/05/toe-03-the-clouds-part-three/
-  - Audio: https://opengameart.org/content/8-bit-jump-1, https://freesound.org/people/timgormly/sounds/170147/, https://www.youtube.com/watch?v=rzhjY4ETXdA
+  - [Background image](http://www.imgbase.info/images/safe-wallpapers/miscellaneous/8_bit/42845_8_bit.jpg)
+  - [Original sausage image](https://www.spoonflower.com/giftwrap/3928149-sausage-wings-by-interrobangart)
+  - [Clouds obstacle](https://toe.prx.org/2013/05/toe-03-the-clouds-part-three/)
+  - [Jump sound](https://opengameart.org/content/8-bit-jump-1), [coin sound](https://freesound.org/people/timgormly/sounds/170147/), [squelch](https://www.youtube.com/watch?v=rzhjY4ETXdA)
   - Big thanks to GA instructors Alex Chin and Rane Gowan, and TAs Nat Huitson and Ed Compton
