@@ -4,7 +4,7 @@ body {
 }
 
 h1 {
-  background-color: #933;
+  background-color: #339;
   font-size: 25px;
   line-height: 30px;
   font-weight: bold;
@@ -18,6 +18,14 @@ p {
 }
 h2 {
   font-size: 20px;
+}
+footer {
+    background-color: #339;
+}
+footer > p {
+  text-align: right;
+  line-height: 50px;
+  color: #faebd7;
 }
 
 .gameBoard {
@@ -33,7 +41,7 @@ h2 {
   overflow: hidden;
 }
 .menu {
-  background-color: #933;
+  background-color: #339;
   margin: 170px auto 0;
   text-align: center;
   color: #faebd7;
@@ -86,7 +94,7 @@ h2 {
 
 .bonusPoints {
   position: absolute;
-  color: #66f;
+  color: #fbd00f;
 }
 
 .bonus {

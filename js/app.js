@@ -12,6 +12,7 @@ $(() =>{
   game.diffChange;
   game.currentBonuses = [];
   game.bonusCount = 0;
+  game.bonusBoost = 5;
   game.currentPos = 0;
   game.score = 0;
   game.highScore = 0;
@@ -19,7 +20,7 @@ $(() =>{
   //function to create and return a div within the game board that has class menu
   game.menu = function menu() {
     const $popup = game.newDiv();
-    $($popup).addClass('menu');
+    $($popup).addClass('menu animated flipInX');
     return $($popup);
   };
   game.newDiv = function newDiv() {
@@ -64,24 +65,29 @@ $(() =>{
   };
   //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
   game.startGame = function startGame() {
-    game.clearBoard();
-    game.createSausage();
-    game.createObstacles();
-    game.scoreBoard();
-    game.obstacles = setInterval(() => {
-      game.createObstacles();
-    }, game.difficulty / 2);
-    game.scoreAndColl = setInterval(() => {
-      game.scoreUp();
-      game.collisionCheck();
-      game.bonusCheck();
-    }, 100);
-    game.atBottom();
-    game.diffChange = setInterval(() => {
-      game.difficulty = game.difficulty * 0.9;
-      clearInterval(game.scrolling);
-      game.bgScroll();
-    }, 5000);
+    $('.menu').addClass('animated flipOutX');
+    setTimeout(function() {
+      game.clearBoard();
+      game.createSausage();
+      setTimeout(function() {
+        game.createObstacles();
+        game.scoreBoard();
+        game.obstacles = setInterval(() => {
+          game.createObstacles();
+        }, game.difficulty / 4);
+        game.scoreAndColl = setInterval(() => {
+          game.scoreUp();
+          game.collisionCheck();
+          game.bonusCheck();
+        }, 100);
+        game.atBottom();
+        game.diffChange = setInterval(() => {
+          game.difficulty = game.difficulty * 0.9;
+          clearInterval(game.scrolling);
+          game.bgScroll();
+        }, 5000);
+      }, 1000);
+    }, 600);
   };
   game.scoreBoard = function scoreBoard() {
     game.scoreTracker = game.newDiv();
@@ -93,9 +99,9 @@ $(() =>{
     game.$sausage = game.newDiv();
     game.$sAudio = game.newAudio();
     $(game.$sAudio).attr('src', 'audio/jumps/sausagejump2.wav');
-    $(game.$sausage).addClass('sausage');
+    $(game.$sausage).addClass('sausage animated fadeInLeftBig');
     $(game.$sausage).css('left', ($(game.$board).css('left')+10));
-    $(game.$sausage).css('top', 250);
+    $(game.$sausage).css('top', 150);
     $(game.$sausage).html('<img id="sausagePic" src="images/sausage-fall.png">');
   };
   //create obstacles, one top one bottom, give them classes, append to gameboard.
@@ -160,12 +166,12 @@ $(() =>{
   game.bonusCheck = function bonusCheck() {
     const $bonus = game.edges($(game.$board).find('.bonus'));
     const $sPos = game.edges($(game.$sausage));
-    if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4])) {
+    if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3] && $sPos[1] < $bonus[3] && $sPos[4] === $bonus[4]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3] && $sPos[1] < $bonus[3] && $sPos[4] === $bonus[4])) {
       game.coinHit();
     }
   };
   game.coinHit = function coinHit() {
-    game.score = game.score + 25;
+    game.score = game.score + game.bonusBoost;
     const $bAudio = game.newAudio();
     $($bAudio).attr('src', 'audio/coin.wav');
     $bAudio[0].play();
@@ -174,8 +180,9 @@ $(() =>{
     game.currentBonuses[game.bonusCount].addClass('animated fadeOutUp');
     game.bonusCount += 1;
     const $bonusPoints = $('.bonusPoints');
-    $bonusPoints.text('+25');
+    $bonusPoints.text('+'+game.bonusBoost);
     $bonusPoints.addClass('animated fadeOutUp');
+    game.bonusBoost += 5;
     setTimeout(function() {
       $bonusPoints.text('');
       $bonusPoints.removeClass('animated fadeOutUp');
@@ -224,6 +231,7 @@ $(() =>{
     game.difficulty = 4000;
     game.currentBonuses.length = 0;
     game.bonusCount = 0;
+    game.bonusBoost = 5;
   };
   //global keydown event listeners
   game.begin = function begin() {
