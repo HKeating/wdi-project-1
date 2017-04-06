@@ -57,8 +57,8 @@ Functionality
 
 Thursday morning plan:
 
--position scoreboard in the gameBoard
--work out how to have a default 00000 score that ticks up
+DONE-position scoreboard in the gameBoard
+DONE-work out how to have a default 00000 score that ticks up
 
 -refactor
 -namespace

@@ -1,23 +1,22 @@
-console.log('Hi there');
-
+var game = game || {};
 
 $(() =>{
 
-  const $board = $('.gameBoard');
-  const $highScore = $('.highScore');
-  let $sausage;
-  let $sAudio;
-  let scoreTracker;
-  let obstacles;
-  let scoreAndColl;
-  let scrolling;
-  const currentBonuses = [];
-  let bonusCount = 0;
-  let currentPos = 0;
-  let diffChange;
-  let score = 0;
-  let highScore = 0;
-  let difficulty = 4000;
+  game.$board = $('.gameBoard');
+  game.$highScore = $('.highScore');
+  game.$sausage;
+  game.$sAudio;
+  game.scoreTracker;
+  game.obstacles;
+  game.scoreAndColl;
+  game.scrolling;
+  game.diffChange;
+  game.currentBonuses = [];
+  game.bonusCount = 0;
+  game.currentPos = 0;
+  game.score = 0;
+  game.highScore = 0;
+  game.difficulty = 4000;
 
   //init function
   homePage();
@@ -51,28 +50,28 @@ $(() =>{
     createSausage();
     createObstacles();
     scoreBoard();
-    obstacles = setInterval(() => {
+    game.obstacles = setInterval(() => {
       createObstacles();
-    }, difficulty / 2);
-    scoreAndColl = setInterval(() => {
+    }, game.difficulty / 2);
+    game.scoreAndColl = setInterval(() => {
       scoreUp();
       collisionCheck();
       bonusCheck();
     }, 100);
     atBottom();
-    diffChange = setInterval(() => {
-      difficulty = difficulty * 0.9;
-      clearInterval(scrolling);
+    game.diffChange = setInterval(() => {
+      game.difficulty = game.difficulty * 0.9;
+      clearInterval(game.scrolling);
       bgScroll();
     }, 5000);
   }
   //clear queued animations and stop current animation. Animate jump of 50px, then check for top/bottom position
   function jump() {
     $('#sausagePic').attr('src', 'images/sausage-rise.png');
-    $sausage.clearQueue();
-    $sausage.stop();
-    $sausage.animate({ top: '-=55px'}, 200, 'easeOutQuad');
-    $sAudio[0].play();
+    game.$sausage.clearQueue();
+    game.$sausage.stop();
+    game.$sausage.animate({ top: '-=55px'}, 200, 'easeOutQuad');
+    game.$sAudio[0].play();
     setTimeout(function() {
       $('#sausagePic').attr('src', 'images/sausage-fall.png');
     }, 200);
@@ -81,32 +80,32 @@ $(() =>{
   }
   //at all times sausage will animate towards bottom of screen
   function atBottom() {
-    if ($sausage.position().top < 1000) {
-      $sausage.animate({ top: 490}, (1000 - edges($($sausage))[0]), 'easeInQuad');
+    if (game.$sausage.position().top < 1000) {
+      game.$sausage.animate({ top: 490}, (1000 - edges($(game.$sausage))[0]), 'easeInQuad');
     }
   }
   //stops animations if jump is attempted when sausage less than 70px from top
   function atTop() {
-    if($sausage.position().top < 60) {
-      $sausage.clearQueue();
-      $sausage.stop();
+    if(game.$sausage.position().top < 60) {
+      game.$sausage.clearQueue();
+      game.$sausage.stop();
     }
   }
   //update scoreboard with current score
   function scoreUp() {
     const $currentScore = $('.currentScore');
-    score = score +1;
-    $($currentScore).text(pad(score));
+    game.score = game.score +1;
+    $($currentScore).text(pad(game.score));
   }
   //create sausage element, position it
   function createSausage() {
-    $sausage = newDiv();
-    $sAudio = newAudio();
-    $($sAudio).attr('src', 'audio/jumps/sausagejump2.wav');
-    $($sausage).addClass('sausage');
-    $($sausage).css('left', ($($board).css('left')+10));
-    $($sausage).css('top', 250);
-    $($sausage).html('<img id="sausagePic" src="images/sausage-fall.png">');
+    game.$sausage = newDiv();
+    game.$sAudio = newAudio();
+    $(game.$sAudio).attr('src', 'audio/jumps/sausagejump2.wav');
+    $(game.$sausage).addClass('sausage');
+    $(game.$sausage).css('left', ($(game.$board).css('left')+10));
+    $(game.$sausage).css('top', 250);
+    $(game.$sausage).html('<img id="sausagePic" src="images/sausage-fall.png">');
   }
   //create obstacles, one top one bottom, give them classes, append to gameboard.
   function createObstacles() {
@@ -125,7 +124,7 @@ $(() =>{
     if (randomNum % 2 == 0) {
       const $newBonus = createBonus();
       $($newBonus).css('top', (350 - randomNum));
-      currentBonuses.push($newBonus);
+      game.currentBonuses.push($newBonus);
       animateLeft($newBonus);
     }
   }
@@ -137,10 +136,10 @@ $(() =>{
   }
   //animate an element until its left position is equal to that of the board, then remove it
   function animateLeft(a) {
-    a.animate({left: ($($board).css('left')) }, difficulty, 'linear');
+    a.animate({left: ($(game.$board).css('left')) }, game.difficulty, 'linear');
     setTimeout(function() {
       a.remove();
-    }, difficulty);
+    }, game.difficulty);
   }
   //find top right bottom and left positions of an element
   function edges(a) {
@@ -154,9 +153,9 @@ $(() =>{
   }
   //collision check, runs edges() on sausage and both obstacles, then checks for overlap. runs gameOver() if there is
   function collisionCheck() {
-    const $ob1 = edges($($board).find('.obstacleTop'));
-    const $ob2 = edges($($board).find('.obstacleBottom'));
-    const $sPos = edges($($sausage));
+    const $ob1 = edges($(game.$board).find('.obstacleTop'));
+    const $ob2 = edges($(game.$board).find('.obstacleBottom'));
+    const $sPos = edges($(game.$sausage));
     const $dAudio = newAudio();
     $($dAudio).attr('src', 'audio/splat-gb.mp3');
     //check for top of sausage and bottom of top obstacle
@@ -167,49 +166,52 @@ $(() =>{
   }
   //repeated collision check to find contact with bonus
   function bonusCheck() {
-    const $bonus = edges($($board).find('.bonus'));
-    const $sPos = edges($($sausage));
+    const $bonus = edges($(game.$board).find('.bonus'));
+    const $sPos = edges($(game.$sausage));
+    if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4])) {
+      coinHit();
+    }
+  }
+  function coinHit() {
+    game.score = game.score + 25;
     const $bAudio = newAudio();
     $($bAudio).attr('src', 'audio/coin.wav');
-    if (($sPos[0] < $bonus[2] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4]) || ($sPos[2] > $bonus[0] && $bonus[1] < $sPos[3] && $sPos[4] === $bonus[4])) {
-      score = score + 10;
-      $bAudio[0].play();
-      $(currentBonuses[bonusCount]).stop();
-      currentBonuses[bonusCount].css('z-index', -1);
-      currentBonuses[bonusCount].addClass('animated fadeOutUp');
-      bonusCount += 1;
-      const $bonusPoints = $('.bonusPoints');
-      $bonusPoints.text('+10');
-      $bonusPoints.addClass('animated fadeOutUp');
-      setTimeout(function() {
-        $bonusPoints.text('');
-        $bonusPoints.removeClass('animated fadeOutUp');
-      }, 500);
-    }
+    $bAudio[0].play();
+    $(game.currentBonuses[game.bonusCount]).stop();
+    game.currentBonuses[game.bonusCount].css('z-index', -1);
+    game.currentBonuses[game.bonusCount].addClass('animated fadeOutUp');
+    game.bonusCount += 1;
+    const $bonusPoints = $('.bonusPoints');
+    $bonusPoints.text('+25');
+    $bonusPoints.addClass('animated fadeOutUp');
+    setTimeout(function() {
+      $bonusPoints.text('');
+      $bonusPoints.removeClass('animated fadeOutUp');
+    }, 500);
   }
   //function to stop intervals and alert user they lost
   function gameOver() {
-    clearInterval(obstacles);
-    clearInterval(scoreAndColl);
-    clearInterval(diffChange);
+    clearInterval(game.obstacles);
+    clearInterval(game.scoreAndColl);
+    clearInterval(game.diffChange);
     clearBoard();
     endPage();
     updateScore();
-    difficulty = 4000;
-    currentBonuses.length = 0;
-    bonusCount = 0;
+    game.difficulty = 4000;
+    game.currentBonuses.length = 0;
+    game.bonusCount = 0;
   }
   function startPage() {
-    menu().html('<p>Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!</p>');
+    menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!</p>');
   }
   //function to create div with text telling user they have lost, recording score, and telling them they can start again by pressing S, or reset scores by pressing R.
   function endPage() {
-    menu().html(((score>highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (score - 1) + ' points and collected ' + bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
+    menu().html(((game.score>game.highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (game.score - 1) + ' points and collected ' + game.bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
   }
   function scoreBoard() {
-    scoreTracker = newDiv();
-    scoreTracker.addClass('scoreBoard');
-    scoreTracker.html('<p>Current Score: <span class="currentScore">0000</span><span class="bonusPoints"></span></p><br><p>High Score: <span class="highScore">'+ pad(((highScore !== 0)?(highScore-1):0)) +'</span></p>');
+    game.scoreTracker = newDiv();
+    game.scoreTracker.addClass('scoreBoard');
+    game.scoreTracker.html('<p>Current Score: <span class="currentScore">0000</span><span class="bonusPoints"></span></p><br><p>High Score: <span class="highScore">'+ pad(((game.highScore !== 0)?(game.highScore-1):0)) +'</span></p>');
   }
   //function to create and return a div within the game board that has class menu
   function menu() {
@@ -219,19 +221,19 @@ $(() =>{
   }
   function newDiv() {
     const newDiv = $(document.createElement('div'));
-    $($board).append(newDiv);
+    game.$board.append(newDiv);
     return newDiv;
   }
   function newAudio() {
     const newAudio = $(document.createElement('audio'));
     return newAudio;
   }
-  //restart function to clear screen, record high score, and get ready to start game again
+  //restart function to clear screen, record high game.score, and get ready to start game again
   function updateScore() {
-    if (score > highScore) {
-      highScore = score;
+    if (game.score > game.highScore) {
+      game.highScore = game.score;
     }
-    score = 0;
+    game.score = 0;
   }
   function pad(a) {
     let padded = '' + a;
@@ -240,20 +242,22 @@ $(() =>{
     }
     return padded;
   }
-  //reset high score to 0
+  //reset high game.score to 0
   function reset() {
-    $($highScore).text('0');
+    $(game.$highScore).text('0');
   }
   function clearBoard() {
-    $board.empty();
+    game.$board.empty();
   }
   function bgScroll() {
     const direction = 'a';
-    const speed = (difficulty/25);
+    const speed = (game.difficulty/25);
     function scroll() {
-      currentPos -= 1;
-      $($board).css('backgroundPosition', (direction == 'a') ? currentPos+'px 0' : '0 ' + currentPos+'px');
+      game.currentPos -= 1;
+      $(game.$board).css('backgroundPosition', (direction == 'a') ? game.currentPos+'px 0' : '0 ' + game.currentPos+'px');
     }
-    scrolling = setInterval(scroll, speed);
+    game.scrolling = setInterval(scroll, speed);
   }
 });
+
+// $(game.homePage);

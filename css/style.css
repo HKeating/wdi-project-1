@@ -16,6 +16,9 @@ p {
   line-height: 20px;
   margin: auto;
 }
+h2 {
+  font-size: 20px;
+}
 
 .gameBoard {
   background: url(../images/background.jpg) repeat 0 bottom;
@@ -28,14 +31,6 @@ p {
   position: relative;
   z-index: -2;
 }
-
-/*.scoreBoard {
-  border: 1px solid black;
-  background-color: grey;
-  color: white;
-  width: 800px;
-  margin: 0 auto;
-}*/
 .menu {
   background-color: #933;
   margin: 170px auto 0;
@@ -44,6 +39,7 @@ p {
   width: 50%;
   padding: 20px;
   border-radius: 10px;
+  line-height: 25px;
 }
 
 .sausage {
@@ -64,8 +60,9 @@ p {
   /*background-size: cover;*/
   position: absolute;
   top: 420px;
-  left: 800px;
+  left: 780px;
   width: 60px;
+  border-radius: 15px 15px 0 0;
 }
 .obstacleBottom > img {
   width: 60px;
@@ -76,7 +73,7 @@ p {
   background: url(../images/four-clouds-small.png) repeat 0 bottom;
   position: absolute;
   top: 0;
-  left: 800px;
+  left: 780px;
   width: 60px;
 }
 
