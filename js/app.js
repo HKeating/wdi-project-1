@@ -174,6 +174,13 @@ $(() =>{
       currentBonuses[bonusCount].css('z-index', -1);
       currentBonuses[bonusCount].addClass('animated fadeOutUp');
       bonusCount += 1;
+      const $bonusPoints = $('.bonusPoints');
+      $bonusPoints.text('+10');
+      $bonusPoints.addClass('animated fadeOutUp');
+      setTimeout(function() {
+        $bonusPoints.text('');
+        $bonusPoints.removeClass('animated fadeOutUp');
+      }, 500);
     }
   }
   //function to stop intervals and alert user they lost
@@ -203,7 +210,7 @@ $(() =>{
   function scoreBoard() {
     scoreTracker = newDiv();
     scoreTracker.addClass('scoreBoard');
-    scoreTracker.html('<p>Current Score: <span class="currentScore">0000</span></p><br><p>High Score: <span class="highScore">'+ pad(((highScore !== 0)?(highScore-1):0)) +'</span></p>');
+    scoreTracker.html('<p>Current Score: <span class="currentScore">0000</span><span class="bonusPoints"></span></p><br><p>High Score: <span class="highScore">'+ pad(((highScore !== 0)?(highScore-1):0)) +'</span></p>');
   }
   //function to create and return a div within the game board that has class menu
   function menu() {
