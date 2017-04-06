@@ -1,8 +1,6 @@
 # wdi-project-1
 This is my first project for WDI26 in London
 
-
-
 Introduction
 
 Flappy Sausage is a one player game based on the popular Flappy Bird and Helicopter games in which the player attempts to survive for as long as possible while avoiding randomly generated obstacles. This game was built using Javascript for my first project on General Assembly's Web Development Immersive course. You can view the game code here: https://github.com/HKeating/wdi-project-1.
@@ -29,6 +27,12 @@ Flappy Sausage was built using HTML, CSS and Javascript, as well as the followin
   - Google fonts (https://fonts.google.com/)
   - Animate.css (https://daneden.github.io/animate.css/)
   - javascript easings (http://gsgd.co.uk/sandbox/jquery/easing/)
+
+Possible future features
+
+  - Responsive design
+  - Improved menu flow including difficulty settings, mute option, and menu navigation with arrow keys
+  - Persistent high score table
 
 Additional credits:
 

@@ -22,7 +22,7 @@ $(() =>{
   homePage();
   //init function which displays greeting, sets background scroll
   function homePage() {
-    menu().html('<h1>A FlappyBird Sim</h1><p>Press any key to continue</p>');
+    menu().html('<h1>Flappy Sausage</h1><p>Press any key to continue</p>');
     $(document).one('keydown', begin);
     bgScroll();
   }
