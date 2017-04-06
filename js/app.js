@@ -16,12 +16,17 @@ $(() =>{
   let currentPos = 0;
   let diffChange;
   let score = 0;
-  // let paddedScore;
   let highScore = 0;
-  // let paddedHighScore;
   let difficulty = 4000;
+
   //init function
   homePage();
+  //init function which displays greeting, sets background scroll
+  function homePage() {
+    menu().html('<h1>A FlappyBird Sim</h1><p>Press any key to continue</p>');
+    $(document).one('keydown', begin);
+    bgScroll();
+  }
   //global keydown event listeners
   function begin() {
     clearBoard();
@@ -40,7 +45,6 @@ $(() =>{
     });
     startPage();
   }
-
   //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
   function startGame() {
     clearBoard();
@@ -194,11 +198,6 @@ $(() =>{
     difficulty = 4000;
     currentBonuses.length = 0;
     bonusCount = 0;
-  }
-  function homePage() {
-    menu().html('<h1>A FlappyBird Sim</h1><p>Press any key to continue</p>');
-    $(document).one('keydown', begin);
-    bgScroll();
   }
   function startPage() {
     menu().html('<p>Welcome to Flappy Sausage<br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!</p>');
