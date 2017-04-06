@@ -205,7 +205,7 @@ $(() =>{
   }
   //function to create div with text telling user they have lost, recording score, and telling them they can start again by pressing S, or reset scores by pressing R.
   function endPage() {
-    menu().html('<p>Oh no, game over!<br>You scored ' + (score - 1) + ' points and collected ' + bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
+    menu().html(((score>highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (score - 1) + ' points and collected ' + bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
   }
   function scoreBoard() {
     scoreTracker = newDiv();
