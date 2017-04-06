@@ -53,3 +53,16 @@ Functionality
   Extra stuff to sort:
     increase background speed as game speeds up
     Fix collision detection with sausage images.
+
+
+Thursday morning plan:
+
+-position scoreboard in the gameBoard
+-work out how to have a default 00000 score that ticks up
+
+-refactor
+-namespace
+
+-readme
+
+-responsive?

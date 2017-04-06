@@ -4,23 +4,23 @@ console.log('Hi there');
 $(() =>{
 
   const $board = $('.gameBoard');
-  const $currentScore = $('.currentScore');
   const $highScore = $('.highScore');
   let $sausage;
   let $sAudio;
+  let scoreTracker;
   let obstacles;
   let scoreAndColl;
   let scrolling;
   const currentBonuses = [];
+  let highScore = 0;
   let bonusCount = 0;
   let currentPos = 0;
   let diffChange;
   let score = 0;
   let difficulty = 4000;
-
-
-  //global keydown event listeners
+  //init function
   homePage();
+  //global keydown event listeners
   function begin() {
     clearBoard();
     $(document).on('keydown', function(e) {
@@ -44,6 +44,7 @@ $(() =>{
     clearBoard();
     createSausage();
     createObstacles();
+    scoreBoard();
     obstacles = setInterval(() => {
       createObstacles();
     }, difficulty / 2);
@@ -87,6 +88,7 @@ $(() =>{
   }
   //update scoreboard with current score
   function scoreUp() {
+    const $currentScore = $('.currentScore');
     score = score +1;
     $($currentScore).text(score);
   }
@@ -196,6 +198,11 @@ $(() =>{
   function endPage() {
     menu().html('<p>Oh no, game over!<br>You scored ' + (score - 1) + ' points and collected ' + bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
   }
+  function scoreBoard() {
+    scoreTracker = newDiv();
+    scoreTracker.addClass('scoreBoard');
+    scoreTracker.html('<p>Current Score: <span class="currentScore">0</span></p><br><p>High Score: <span class="highScore">'+ ((highScore !== 0)?(highScore-1):0) +'</span></p>');
+  }
   //function to create and return a div within the game board that has class menu
   function menu() {
     const $popup = newDiv();
@@ -213,9 +220,8 @@ $(() =>{
   }
   //restart function to clear screen, record high score, and get ready to start game again
   function updateScore() {
-    if (score > $($highScore).text()) {
-      $($highScore).text(score - 1);
-      $($currentScore).text('0');
+    if (score > highScore) {
+      highScore = score;
     }
     score = 0;
   }
