@@ -252,7 +252,7 @@ $(() =>{
     game.startPage();
   };
   game.startPage = function startPage() {
-    game.menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- to begin, use -space- to jump.<br>Avoid the obstacles!</p>');
+    game.menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- to begin, use <br>-space- to jump.<br>Avoid the obstacles!</p>');
   };
   game.endPage = function endPage() {
     game.menu().html(((game.score>game.highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (game.score - 1) + ' points and collected ' + game.bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
