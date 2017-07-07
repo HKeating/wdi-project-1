@@ -66,3 +66,15 @@ DONE-work out how to have a default 00000 score that ticks up
 -readme
 
 -responsive?
+
+
+
+
+
+Presentation
+
+  Why? Everyone loves flappy bird? Make something fun to play... Learn about animate
+  Challenge: collision detection, learning to use .animate, timings
+  Win: Making a sausage that 'flaps'
+  Code highlight: startGame (l.67) and edges/collisionCheck (l.145, l.155)
+  Takeaway: push myself further in terms of logic for the next project

@@ -63,12 +63,15 @@ $(() =>{
     }
     game.score = 0;
   };
-  //Start function, creates jumping element, sets up jump event listener and begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom().
+
+  //Start function, creates jumping element, begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom() and bgscroll.
   game.startGame = function startGame() {
     $('.menu').addClass('animated flipOutX');
+    //timeout to allow menu screen to animate out
     setTimeout(function() {
       game.clearBoard();
       game.createSausage();
+      //timeout to allow sausage to animate in
       setTimeout(function() {
         game.createObstacles();
         game.scoreBoard();
@@ -89,6 +92,7 @@ $(() =>{
       }, 1000);
     }, 600);
   };
+
   game.scoreBoard = function scoreBoard() {
     game.scoreTracker = game.newDiv();
     game.scoreTracker.addClass('scoreBoard');
