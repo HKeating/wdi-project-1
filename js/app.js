@@ -265,6 +265,7 @@ $(() =>{
   game.homePage = function homePage() {
     game.menu().html('<h1>Flappy Sausage</h1><p>Press any key to continue</p>');
     $(document).one('keydown', game.begin);
+    $(document).one('touchstart', game.begin);
     game.bgScroll();
   };
   //init function
