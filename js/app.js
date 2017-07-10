@@ -67,6 +67,7 @@ $(() =>{
   //Start function, creates jumping element, begins intervals generating obstacles, and updating score and checking for collision. Also initialises atBottom() and bgscroll.
   game.startGame = function startGame() {
     $('.menu').addClass('animated flipOutX');
+    $(document).on('touchstart', game.jump);
     //timeout to allow menu screen to animate out
     setTimeout(function() {
       game.clearBoard();
@@ -236,6 +237,7 @@ $(() =>{
     game.currentBonuses.length = 0;
     game.bonusCount = 0;
     game.bonusBoost = 5;
+    $(document).off('touchstart', game.jump);
   };
   //global keydown event listeners
   game.begin = function begin() {
@@ -253,18 +255,22 @@ $(() =>{
           break;
       }
     });
+    $(document).one('click', () => {
+      game.startGame();
+    });
     game.startPage();
   };
   game.startPage = function startPage() {
-    game.menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- to begin, use <br>-space- to jump.<br>Avoid the obstacles!</p>');
+    game.menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- or click anywhere to begin,<br>user -space- to jump.<br>Avoid the obstacles!</p>');
   };
   game.endPage = function endPage() {
     game.menu().html(((game.score>game.highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (game.score - 1) + ' points and collected ' + game.bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
+    $(document).one('click', game.startGame);
   };
   //init function which displays greeting, sets background scroll
   game.homePage = function homePage() {
     game.menu().html('<h1>Flappy Sausage</h1><p>Press any key to continue</p>');
-    $(document).one('keydown tap', game.begin);
+    $(document).one('keydown click', game.begin);
     // $(document).one('touchstart', game.begin);
     game.bgScroll();
   };
