@@ -255,22 +255,22 @@ $(() =>{
           break;
       }
     });
-    $(document).one('click', () => {
+    $(document).one('touchstart', () => {
       game.startGame();
     });
     game.startPage();
   };
   game.startPage = function startPage() {
-    game.menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- or click anywhere to begin,<br>user -space- to jump.<br>Avoid the obstacles!</p>');
+    game.menu().html('<p><h2>Welcome to Flappy Sausage</h2><br>See how far you can get.<br>Press -s- or tap anywhere to begin,<br>user -space- to jump.<br>Avoid the obstacles!</p>');
   };
   game.endPage = function endPage() {
-    game.menu().html(((game.score>game.highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (game.score - 1) + ' points and collected ' + game.bonusCount + ' bonus coin(s).<br>To play again, press -s-<br>To reset the high score press -r-.</p>');
-    $(document).one('click', game.startGame);
+    game.menu().html(((game.score>game.highScore)?'New High Score!':'<p>Oh no, game over!')+'<br>You scored ' + (game.score - 1) + ' points and collected ' + game.bonusCount + ' bonus coin(s).<br>To play again, press -s- or tap anywhere<br>To reset the high score press -r-.</p>');
+    $(document).one('touchstart', game.startGame);
   };
   //init function which displays greeting, sets background scroll
   game.homePage = function homePage() {
     game.menu().html('<h1>Flappy Sausage</h1><p>Press any key to continue</p>');
-    $(document).one('keydown click', game.begin);
+    $(document).one('keydown touchstart', game.begin);
     // $(document).one('touchstart', game.begin);
     game.bgScroll();
   };
