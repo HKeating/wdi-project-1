@@ -264,7 +264,7 @@ $(() =>{
   //init function which displays greeting, sets background scroll
   game.homePage = function homePage() {
     game.menu().html('<h1>Flappy Sausage</h1><p>Press any key to continue</p>');
-    $(document).one('keydown touchstart', game.begin);
+    $(document).one('keydown tap', game.begin);
     // $(document).one('touchstart', game.begin);
     game.bgScroll();
   };
